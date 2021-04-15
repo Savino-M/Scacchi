@@ -9,7 +9,7 @@ La struttura della repository si presenta nel seguente modo:
 |–– src
 |    |–– main
 |    |–– test
-|–– .gitignore
+|–– scacchi.iml
 |–– README.md
 |--pom.xml
 ```
