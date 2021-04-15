@@ -9,6 +9,9 @@ La struttura della repository si presenta nel seguente modo:
 |–– src
 |    |–– main
 |    |–– test
+|--target
+|    |--classes
+|    |-test-classes
 |–– scacchi.iml
 |–– README.md
 |--pom.xml
