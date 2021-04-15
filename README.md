@@ -1,4 +1,4 @@
-# scacchi ![CI/CD](https://github.com/softeng1920-inf-uniba/progetto1920-knuth/workflows/CI/CD/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/softeng1920-inf-uniba/progetto1920-knuth/badge.svg?t=NMuq2h)](https://coveralls.io/github/softeng1920-inf-uniba/progetto1920-knuth)
+# Scacchi
 
 La struttura della repository si presenta nel seguente modo:
 ```
