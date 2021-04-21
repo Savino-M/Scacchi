@@ -1,18 +1,20 @@
 package general;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import org.junit.jupiter.api.Test;
 
-public class PartitaTest {
+import static org.junit.Assert.assertFalse;
+
+public class PartitaTest
+{
 
     @Test
-    public void scaccoMattoTest() {
-    
-	// scacco matto vero
-    
-	Scacchiera test = new Scacchiera();
-	int[] testScacco = new int[4];
+    public void scaccoMattoTest()
+    {
+
+        // scacco matto vero
+
+        Scacchiera test = new Scacchiera();
+        int[] testScacco = new int[4];
 	
 	/*
 	for (int i = 0; i < 8; i++) {
@@ -35,15 +37,15 @@ public class PartitaTest {
 	Partita.getPlayer();
 	assertTrue(Partita.scaccoMatto(test));
 	*/
-	
-	//scacco matto falso
-	test = new Scacchiera();
-	testScacco[0] = 7;
-	testScacco[1] = 4;
-	testScacco[2] = 0;
-	testScacco[3] = 4;
-	Partita.setRe(testScacco);
-	assertFalse(Partita.scaccoMatto(test));
+
+        //scacco matto falso
+        test = new Scacchiera();
+        testScacco[0] = 7;
+        testScacco[1] = 4;
+        testScacco[2] = 0;
+        testScacco[3] = 4;
+        Partita.setRe(testScacco);
+        assertFalse(Partita.scaccoMatto(test));
     }
 
 }
