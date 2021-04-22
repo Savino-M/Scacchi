@@ -67,7 +67,8 @@ public final class AppMain
                     {
                         System.out.println("\n   Hai abbandonato la partita.");
                         System.exit(0);
-                    } else if (!scelta.equals("N"))
+                    }
+                    else if (!scelta.equals("N"))
                     {
                         System.out.println("\n   Comando non valido, reinserire.");
                     }
@@ -95,13 +96,16 @@ public final class AppMain
         if (scelta.equals("play"))
         {
             command = Comando.play;
-        } else if (scelta.equals("help"))
+        }
+        else if (scelta.equals("help"))
         {
             command = Comando.help;
-        } else if (scelta.equals("quit"))
+        }
+        else if (scelta.equals("quit"))
         {
             command = Comando.quit;
-        } else
+        }
+        else
         {
             command = Comando.nullo;
         }

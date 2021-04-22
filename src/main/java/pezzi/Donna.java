@@ -50,13 +50,15 @@ public class Donna extends Pezzo
                 y = colPart + 1;
                 caso = 0;
 
-            } else
+            }
+            else
             {
                 x = rigaPart + 1;
                 y = colPart - 1;
                 caso = 1;
             }
-        } else
+        }
+        else
         {
             if (colDest > colPart)
             {
@@ -64,7 +66,8 @@ public class Donna extends Pezzo
                 y = colPart + 1;
                 caso = 2;
 
-            } else
+            }
+            else
             {
                 x = rigaPart - 1;
                 y = colPart - 1;
@@ -102,7 +105,8 @@ public class Donna extends Pezzo
                 y = colPart + 1;
                 caso = 0;
 
-            } else
+            }
+            else
             {
 
                 x = rigaPart + 1;
@@ -110,7 +114,8 @@ public class Donna extends Pezzo
                 caso = 1;
 
             }
-        } else
+        }
+        else
         {
             if (colTarget > colPart)
             {
@@ -119,7 +124,8 @@ public class Donna extends Pezzo
                 y = colPart + 1;
                 caso = 2;
 
-            } else
+            }
+            else
             {
 
                 x = rigaPart - 1;
@@ -160,7 +166,8 @@ public class Donna extends Pezzo
                 x = rigaPart - 1;
                 caso = 0;
 
-            } else
+            }
+            else
             {
                 y = colDest;
                 x = rigaPart + 1;
@@ -176,7 +183,8 @@ public class Donna extends Pezzo
                 y = colPart + 1;
                 caso = 2;
 
-            } else
+            }
+            else
             {
                 x = rigaDest;
                 y = colPart - 1;
@@ -213,7 +221,8 @@ public class Donna extends Pezzo
                 y = colTarget;
                 x = rigaPart - 1;
                 caso = 0;
-            } else
+            }
+            else
             {
                 y = colTarget;
                 x = rigaPart + 1;
@@ -229,7 +238,8 @@ public class Donna extends Pezzo
                 y = colPart + 1;
                 caso = 2;
 
-            } else
+            }
+            else
             {
                 x = rigaTarget;
                 y = colPart - 1;
@@ -249,7 +259,8 @@ public class Donna extends Pezzo
         if (getColor() == 'N')
         {
             setCode("\u265B");
-        } else
+        }
+        else
         {
             setCode("\u2655");
         }

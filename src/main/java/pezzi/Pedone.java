@@ -84,7 +84,8 @@ public class Pedone extends Pezzo
         if (giocatore.equals("bianco"))
         {
             offset = 1;
-        } else
+        }
+        else
         {
             offset = -1;
         }
@@ -123,14 +124,16 @@ public class Pedone extends Pezzo
                 temp = s.getScacchiera()[rigaDest - 1][colonnaDest];
                 s.getScacchiera()[rigaDest][colonnaDest] = temp;
                 s.getScacchiera()[rigaDest - 1][colonnaDest] = null;
-            } else
+            }
+            else
             {
                 temp = s.getScacchiera()[rigaDest + 1][colonnaDest];
                 s.getScacchiera()[rigaDest][colonnaDest] = temp;
                 s.getScacchiera()[rigaDest + 1][colonnaDest] = null;
             }
             valid = true;
-        } else
+        }
+        else
         { // spostamento di due righe
 
             if (giocatore.equals("nero"))
@@ -142,7 +145,8 @@ public class Pedone extends Pezzo
                     s.getScacchiera()[rigaDest - 2][colonnaDest] = null;
                     valid = true;
                 }
-            } else
+            }
+            else
             {
                 if (s.getScacchiera()[rigaDest + 1][colonnaDest] == null)
                 {
@@ -176,7 +180,8 @@ public class Pedone extends Pezzo
         if (giocatore.equals("bianco"))
         {
             offset = 1;
-        } else
+        }
+        else
         {
             offset = -1;
         }
@@ -205,7 +210,8 @@ public class Pedone extends Pezzo
         if (getColor() == 'N')
         {
             setCode("\u265F");
-        } else
+        }
+        else
         {
             setCode("\u2659");
         }

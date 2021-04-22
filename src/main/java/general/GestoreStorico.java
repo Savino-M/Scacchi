@@ -40,14 +40,16 @@ public final class GestoreStorico
                 {
                     j++;
                     System.out.print("\n   " + (j) + ". " + mosse.get(i)); // stampa di tutto il contenuto
-                } else
+                }
+                else
                 {
                     System.out.print(", " + mosse.get(i));
                 }
             }
             System.out.println();
 
-        } else
+        }
+        else
         {
             System.out.println("\n   >Nessuna mossa presente!");
         }
@@ -109,7 +111,8 @@ public final class GestoreStorico
         if (giocatore.equals("bianco"))
         { // aggiunta all'array delle catture
             cattureBianco.add(pezzo.getUniCode());
-        } else
+        }
+        else
         {
             cattureNero.add(pezzo.getUniCode());
         }

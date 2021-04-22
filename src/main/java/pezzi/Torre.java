@@ -70,7 +70,8 @@ public class Torre extends Pezzo
                 x = rigaPart - 1;
                 caso = 0;
 
-            } else
+            }
+            else
             {
                 y = colDest;
                 x = rigaPart + 1;
@@ -86,7 +87,8 @@ public class Torre extends Pezzo
                 y = colPart + 1;
                 caso = 2;
 
-            } else
+            }
+            else
             {
                 x = rigaDest;
                 y = colPart - 1;
@@ -130,7 +132,8 @@ public class Torre extends Pezzo
                 y = colDest;
                 x = rigaPart - 1;
                 caso = 0;
-            } else
+            }
+            else
             {
                 y = colDest;
                 x = rigaPart + 1;
@@ -146,7 +149,8 @@ public class Torre extends Pezzo
                 y = colPart + 1;
                 caso = 2;
 
-            } else
+            }
+            else
             {
                 x = rigaDest;
                 y = colPart - 1;
@@ -166,7 +170,8 @@ public class Torre extends Pezzo
         if (getColor() == 'N')
         {
             setCode("\u265C");
-        } else
+        }
+        else
         {
             setCode("\u2656");
         }

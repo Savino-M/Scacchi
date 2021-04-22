@@ -122,28 +122,36 @@ public final class Traduttore
         if (comando.equals("play"))
         {
             command = general.Partita.Command.play;
-        } else if (comando.equals("board"))
+        }
+        else if (comando.equals("board"))
         {
             command = general.Partita.Command.board;
-        } else if (comando.equals("help"))
+        }
+        else if (comando.equals("help"))
         {
             command = general.Partita.Command.help;
-        } else if (comando.equals("quit"))
+        }
+        else if (comando.equals("quit"))
         {
             command = general.Partita.Command.quit;
-        } else if (comando.equals("moves"))
+        }
+        else if (comando.equals("moves"))
         {
             command = general.Partita.Command.moves;
-        } else if (comando.equals("captures"))
+        }
+        else if (comando.equals("captures"))
         {
             command = general.Partita.Command.captures;
-        } else if (matcher.matches() || arrocco)
+        }
+        else if (matcher.matches() || arrocco)
         { // Se il comando rispecchia uno spostamento
             command = general.Partita.Command.spostamento;
-        } else if (matcher1.matches())
+        }
+        else if (matcher1.matches())
         { // Se il comando rispecchia una cattura
             command = general.Partita.Command.cattura;
-        } else
+        }
+        else
         {
             command = general.Partita.Command.nullo;
         }

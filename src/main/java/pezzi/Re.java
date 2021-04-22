@@ -79,7 +79,8 @@ public class Re extends Pezzo
         if (getColor() == 'N')
         {
             setCode("\u265A");
-        } else
+        }
+        else
         {
             setCode("\u2654");
         }
@@ -132,7 +133,8 @@ public class Re extends Pezzo
         {
             rigaPartRe = RPARTRE;
             rigaPartTorre = RPARTORRE;
-        } else
+        }
+        else
         {
             rigaPartRe = 0;
             rigaPartTorre = 0;
@@ -145,7 +147,8 @@ public class Re extends Pezzo
             colDestRe = colPartRe + 2;
             colPartTorre = CPARTORRE;
             colDestTorre = CDESTORRE;
-        } else
+        }
+        else
         {
             colDestRe = colPartRe - 2;
             colPartTorre = 0;

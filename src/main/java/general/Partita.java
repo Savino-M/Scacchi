@@ -139,7 +139,8 @@ public class Partita
                             GestoreStorico.resettaLista();
                             giocatore = "bianco";
                             p.play();
-                        } else if (scelta.equals("N"))
+                        }
+                        else if (scelta.equals("N"))
                         {
                             play();
                         }
@@ -183,7 +184,8 @@ public class Partita
                         {
                             System.out.println("\n   " + giocatore.toUpperCase() + " ha abbandonato la partita.");
                             System.exit(0);
-                        } else if (scelta1.equals("N"))
+                        }
+                        else if (scelta1.equals("N"))
                         {
                             play();
                         }
@@ -245,19 +247,22 @@ public class Partita
             {  //se il re avversario � sotto scacco
                 rePrecNero = (Re) s.getScacchiera()[re[2]][re[TRE]];  //viene segnato
                 esito = true;    //e viene segnato che ci si trova in posizione di scacco
-            } else
+            }
+            else
             {
                 rePrecNero = null;   //se il re avversario non � in posizione di scacco
                 esito = false;
             }
-        } else
+        }
+        else
         {
 
             if (Spostamento.isSottoScacco(re[0], re[1], "bianco", s))
             {
                 rePrecBianco = (Re) s.getScacchiera()[re[0]][re[1]];
                 esito = true;
-            } else
+            }
+            else
             {
                 rePrecBianco = null;
                 esito = false;
@@ -278,7 +283,8 @@ public class Partita
         if (giocatore.equals("bianco"))
         {
             giocatore = "nero";
-        } else
+        }
+        else
         {
             giocatore = "bianco";
         }

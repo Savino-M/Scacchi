@@ -157,7 +157,8 @@ public class Cavallo extends Pezzo
         if (getColor() == 'N')
         {
             setCode("\u265E");
-        } else
+        }
+        else
         {
             setCode("\u2658");
         }

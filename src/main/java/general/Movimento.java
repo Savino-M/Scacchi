@@ -134,13 +134,15 @@ public final class Movimento
                         {
                             pezzo1 = rigaPart + "," + colPart + "," + spostamento;
                             break;
-                        } else
+                        }
+                        else
                         {
                             pezzo2 = rigaPart + "," + colPart + "," + spostamento;
                             break;
                         }
                     }
-                } else if (scacchiera.getScacchiera()[x][y] instanceof Pezzo)
+                }
+                else if (scacchiera.getScacchiera()[x][y] instanceof Pezzo)
                 {
                     break;
                 }
@@ -199,7 +201,8 @@ public final class Movimento
                                 && colUser.contentEquals(pezzo1.substring(2, TRE)))
                         {
                             pezzoF = pezzo1;
-                        } else if (rigaUser.contentEquals(pezzo2.substring(0, 1))
+                        }
+                        else if (rigaUser.contentEquals(pezzo2.substring(0, 1))
                                 && colUser.contentEquals(pezzo2.substring(2, TRE)))
                         {
                             pezzoF = pezzo2;
@@ -242,7 +245,8 @@ public final class Movimento
         if (pezzo.equals("Torre"))
         {
             t = (Torre) s.getScacchiera()[rigaPart][colPart]; // Torre che si vuole spostare
-        } else
+        }
+        else
         {
             t = (Donna) s.getScacchiera()[rigaPart][colPart]; // Donna che si vuole spostare
         }
@@ -285,7 +289,8 @@ public final class Movimento
                     default:
                 }
 
-            } else
+            }
+            else
             {
                 if (cattura)
                 { // se si deve effettuare una cattura
@@ -299,7 +304,8 @@ public final class Movimento
                         // "mangiatore"
                         esito = true;
                     }
-                } else
+                }
+                else
                 { // altrimenti annullo gli spostamenti del pezzo
                     esito = false;
                     s.getScacchiera()[rigaPart][colPart] = null;
@@ -356,7 +362,8 @@ public final class Movimento
                     if (pezzo1 == null)
                     {
                         pezzo1 = rigaPart + "," + colPart + "," + caso;
-                    } else
+                    }
+                    else
                     {
                         pezzo2 = rigaPart + "," + colPart + "," + caso;
                     }
@@ -388,7 +395,8 @@ public final class Movimento
                                 && colUser.contentEquals(pezzo1.substring(2, TRE)))
                         {
                             f = pezzo1;
-                        } else if (rigaUser.contentEquals(pezzo2.substring(0, 1))
+                        }
+                        else if (rigaUser.contentEquals(pezzo2.substring(0, 1))
                                 && colUser.contentEquals(pezzo2.substring(2, TRE)))
                         {
                             f = pezzo2;
@@ -431,7 +439,8 @@ public final class Movimento
             s.getScacchiera()[x][y] = c; // e lo metto nella casella successiva
             esito = true;
 
-        } else
+        }
+        else
         {
             if (cattura)
             { // se si deve effettuare una cattura
@@ -441,7 +450,8 @@ public final class Movimento
                 s.getScacchiera()[rigaPart][colPart] = null; // svuoto la casella in cui si trovava Cavallo
                 esito = true;
 
-            } else
+            }
+            else
             { // altrimenti annullo gli spostamenti del cavallo
                 esito = false;
                 s.getScacchiera()[rigaPart][colPart] = null;
@@ -503,7 +513,8 @@ public final class Movimento
                         colPart = y; // salvo la colonna del pezzo che si vuole spostare
                         break; // esco dal ciclo
                     }
-                } else if (scacchiera.getScacchiera()[x][y] instanceof Pezzo)
+                }
+                else if (scacchiera.getScacchiera()[x][y] instanceof Pezzo)
                 {
                     break;
                 }
@@ -580,7 +591,8 @@ public final class Movimento
         if (pezzo.equals("Alfiere"))
         {
             a = (Alfiere) s.getScacchiera()[rigaPart][colPart]; // Alfiere che si vuole spostare
-        } else
+        }
+        else
         {
             a = (Donna) s.getScacchiera()[rigaPart][colPart]; // Donna che si vuole spostare
         }
@@ -625,7 +637,8 @@ public final class Movimento
                     default:
                 }
 
-            } else
+            }
+            else
             {
                 if (cattura)
                 { // se si deve effettuare una cattura
@@ -638,14 +651,16 @@ public final class Movimento
                         s.getScacchiera()[rigaPart][colPart] = null; // svuoto la casella in cui si trovava il pezzo
                         // "mangiatore"
                         esito = true;
-                    } else
+                    }
+                    else
                     { // altrimenti annullo gli spostamenti del pezzo
                         esito = false;
                         s.getScacchiera()[rigaPart][colPart] = null;
                         s.getScacchiera()[riga][colonna] = a;
                     }
 
-                } else
+                }
+                else
                 { // altrimenti annullo gli spostamenti del pezzo
                     esito = false;
                     s.getScacchiera()[rigaPart][colPart] = null;

@@ -67,10 +67,12 @@ public class Spostamento
                 if (comando.equals("0-0") || comando.equals("O-O"))
                 {
                     spostamentoArrocco(0);
-                } else if (comando.equals("0-0-0") || comando.equals("O-O-O"))
+                }
+                else if (comando.equals("0-0-0") || comando.equals("O-O-O"))
                 {
                     spostamentoArrocco(1);
-                } else
+                }
+                else
                 {
                     spostamentoPedone();
                 }
@@ -103,7 +105,8 @@ public class Spostamento
             if (m == null)
             {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
-            } else
+            }
+            else
             {
                 rigaPart = Integer.valueOf(m.substring(0, 1)); // riga di partenza del Re
                 colPart = Integer.valueOf(m.substring(2)); // colonna di partenza del Re
@@ -116,14 +119,16 @@ public class Spostamento
                 {
                     Partita.getRe()[0] = spostamentoRiga;
                     Partita.getRe()[1] = spostamentoCol;
-                } else
+                }
+                else
                 {
                     Partita.getRe()[2] = spostamentoRiga;
                     Partita.getRe()[COLRENERO] = spostamentoCol;
                 }
                 giocatore = Partita.getPlayer(); // passo il turno all'avversario
             }
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
@@ -148,7 +153,8 @@ public class Spostamento
             if (giocatore.equals("bianco"))
             {
                 re1 = (Re) scacchiera.getScacchiera()[RIGINB][COLINB];
-            } else
+            }
+            else
             {
                 re1 = (Re) scacchiera.getScacchiera()[RIGINN][COLINN];
             }
@@ -161,18 +167,21 @@ public class Spostamento
                 {
                     Partita.getRe()[0] = riga1;
                     Partita.getRe()[1] = col1;
-                } else
+                }
+                else
                 {
                     Partita.getRe()[0] = riga1;
                     Partita.getRe()[1] = 2;
                 }
-            } else
+            }
+            else
             {
                 if (tipo == 0)
                 {
                     Partita.getRe()[2] = 0;
                     Partita.getRe()[COLRENERO] = col1;
-                } else
+                }
+                else
                 {
                     Partita.getRe()[2] = 0;
                     Partita.getRe()[COLRENERO] = 2;
@@ -180,7 +189,8 @@ public class Spostamento
             }
 
             giocatore = Partita.getPlayer(); // passo il turno all'avversario
-        } else
+        }
+        else
         {
             // SE LE CONDIZIONI NON SONO VERIFICATE
             System.out.println("   Mossa illegale, arrocco non consentito!");
@@ -209,7 +219,8 @@ public class Spostamento
             if (m == null)
             {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
-            } else
+            }
+            else
             {
                 rigaPart = Integer.valueOf(m.substring(0, 1));
                 colPart = Integer.valueOf(m.substring(2, TRE));
@@ -221,13 +232,15 @@ public class Spostamento
                     System.out.println("   Mossa effettuata!");
                     GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                     giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                } else
+                }
+                else
                 {
                     System.out.println("   Mossa illegale, spostamento non consentito!");
                 }
 
             }
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
@@ -253,7 +266,8 @@ public class Spostamento
         if (m == null)
         {
             System.out.println("   Mossa illegale, spostamento non consentito!");
-        } else
+        }
+        else
         {
             rigaPart = Integer.valueOf(m.substring(0, 1));
             colPart = Integer.valueOf(m.substring(2, TRE));
@@ -268,7 +282,8 @@ public class Spostamento
                 System.out.println("   Mossa effettuata!");
                 GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                 giocatore = Partita.getPlayer(); // passo il turno all'avversario
-            } else
+            }
+            else
             {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
             }
@@ -298,7 +313,8 @@ public class Spostamento
             if (m == null)
             {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
-            } else
+            }
+            else
             {
                 rigaPart = Integer.valueOf(m.substring(0, 1));
                 colPart = Integer.valueOf(m.substring(2, TRE));
@@ -313,12 +329,14 @@ public class Spostamento
                     // aggiungo lo spostamento allo storico mosse
 
                     giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                } else
+                }
+                else
                 {
                     System.out.println("   Mossa illegale, spostamento non consentito!");
                 }
             }
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
@@ -357,12 +375,14 @@ public class Spostamento
                 System.out.println("   Mossa effettuata!");
                 GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                 giocatore = Partita.getPlayer(); // passo il turno all'avversario
-            } else
+            }
+            else
             {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
             }
 
-        } else if (m2 != null)
+        }
+        else if (m2 != null)
         { // se ho trovato la Donna sui lati
             rigaPart = Integer.valueOf(m2.substring(0, 1));
             colPart = Integer.valueOf(m2.substring(2, TRE));
@@ -375,12 +395,14 @@ public class Spostamento
                 System.out.println("   Mossa effettuata!");
                 GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                 giocatore = Partita.getPlayer(); // passo il turno all'avversario
-            } else
+            }
+            else
             {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
             }
 
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
@@ -411,14 +433,17 @@ public class Spostamento
                 if (spostamento == 1)
                 {
                     offset = spostamentoRiga + 1;
-                } else
+                }
+                else
                 {
                     offset = spostamentoRiga + 2;
                 }
-            } else if (spostamento == 1)
+            }
+            else if (spostamento == 1)
             {
                 offset = spostamentoRiga - 1;
-            } else
+            }
+            else
             {
                 offset = spostamentoRiga - 2;
             }
@@ -438,7 +463,8 @@ public class Spostamento
                 if (spostamento == 1)
                 {
                     p.setEnPassant(false); // il pedone non potra' mai piu' essere catturato per enpassant
-                } else
+                }
+                else
                 {
                     p.setEnPassant(true); // il pedone puo' essere catturato tramite enpassant solo per questo turno
                     pPrec = (Pedone) p;
@@ -455,17 +481,20 @@ public class Spostamento
                     System.out.println("   Mossa effettuata!");
                     GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                     giocatore = Partita.getPlayer();
-                } else
+                }
+                else
                 {
                     System.out.println("   Mossa illegale");
                 }
-            } else
+            }
+            else
             {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
             }
             offset = 0;
 
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
@@ -497,7 +526,8 @@ public class Spostamento
             rigaPartRe = RIGINB;
             rigaPartTorre = RIGINB;
 
-        } else
+        }
+        else
         {
             rigaPartRe = 0;
             rigaPartTorre = 0;
@@ -508,7 +538,8 @@ public class Spostamento
             colPartTorre = RIGINB;
             passo1 = COLPAS1AC;
             passo2 = COLPAS2AC;
-        } else
+        }
+        else
         {
             colPartTorre = 0;
             passo1 = 1;
@@ -525,7 +556,8 @@ public class Spostamento
             torreTemp = (Torre) scacchiera.getScacchiera()[rigaPartTorre][colPartTorre];
             reTemp = (Re) scacchiera.getScacchiera()[rigaPartRe][colPartRe];
             risultatoCond = true;
-        } else
+        }
+        else
         {
             risultatoCond = false;
         }
@@ -579,7 +611,8 @@ public class Spostamento
         {
 
             tempGiocatore = "nero";
-        } else
+        }
+        else
         {
             tempGiocatore = "bianco";
         }

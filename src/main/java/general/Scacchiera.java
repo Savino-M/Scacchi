@@ -101,7 +101,8 @@ public class Scacchiera
                         System.out.print(ANSI_WHITE_BACKGROUND + ANSI_BLACK);
                     }
 
-                } else
+                }
+                else
                 {
                     if (z < COLUMN)
                     {
@@ -124,7 +125,8 @@ public class Scacchiera
                     {
                         bianco1 = !bianco1;
 
-                    } else
+                    }
+                    else
                     {
                         bianco1 = !bianco1;
                     }
@@ -144,7 +146,8 @@ public class Scacchiera
                         System.out.print(ANSI_WHITE_BACKGROUND + ANSI_BLACK);
                     }
 
-                } else
+                }
+                else
                 {
                     if (j < COLUMN)
                     {
@@ -170,7 +173,8 @@ public class Scacchiera
                     {
                         bianco = !bianco;
 
-                    } else
+                    }
+                    else
                     {
                         bianco = !bianco;
                     }

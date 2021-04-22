@@ -57,13 +57,15 @@ public class Alfiere extends Pezzo
                 y = colPart + 1;
                 caso = 0;
 
-            } else
+            }
+            else
             {
                 x = rigaPart + 1;
                 y = colPart - 1;
                 caso = 1;
             }
-        } else
+        }
+        else
         {
             if (colDest > colPart)
             {
@@ -71,7 +73,8 @@ public class Alfiere extends Pezzo
                 y = colPart + 1;
                 caso = 2;
 
-            } else
+            }
+            else
             {
                 x = rigaPart - 1;
                 y = colPart - 1;
@@ -109,7 +112,8 @@ public class Alfiere extends Pezzo
                 y = colPart + 1;
                 caso = 0;
 
-            } else
+            }
+            else
             {
 
                 x = rigaPart + 1;
@@ -117,7 +121,8 @@ public class Alfiere extends Pezzo
                 caso = 1;
 
             }
-        } else
+        }
+        else
         {
             if (colTarget > colPart)
             {
@@ -126,7 +131,8 @@ public class Alfiere extends Pezzo
                 y = colPart + 1;
                 caso = 2;
 
-            } else
+            }
+            else
             {
 
                 x = rigaPart - 1;
@@ -148,7 +154,8 @@ public class Alfiere extends Pezzo
         if (getColor() == 'N')
         {
             setCode("\u265D");
-        } else
+        }
+        else
         {
             setCode("\u2657");
         }

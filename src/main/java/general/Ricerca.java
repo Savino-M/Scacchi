@@ -266,7 +266,8 @@ public final class Ricerca
         {
             offset = 1;
             offset2 = 2;
-        } else
+        }
+        else
         {
             offset = -1;
             offset2 = -OFFSET;
@@ -286,7 +287,8 @@ public final class Ricerca
                 }
 
                 // altrimenti verifico che due righe prima ci sia un Pedone
-            } else if (scacchiera.getScacchiera()[rigaDest + offset2][colDest] instanceof Pedone)
+            }
+            else if (scacchiera.getScacchiera()[rigaDest + offset2][colDest] instanceof Pedone)
             {
 
                 // se il Pedone da spostare appartiene al giocatore in turno
@@ -298,7 +300,8 @@ public final class Ricerca
                     if (p.isPrimaMossa())
                     { // se il Pedone non si e' gia' precedentemente spostato di due righe
                         spostamento = 2;
-                    } else
+                    }
+                    else
                     {
                         System.out.println("   Hai gia' utilizzato la prima mossa per questo pedone");
 
@@ -343,7 +346,8 @@ public final class Ricerca
         if (giocatore.equals("bianco"))
         {
             offset = 1;
-        } else
+        }
+        else
         {
             offset = -1;
         }
@@ -361,7 +365,8 @@ public final class Ricerca
                 esito = true;
             }
 
-        } else if (codice == 1)
+        }
+        else if (codice == 1)
         { // se e' una cattura per enpassant
             boolean possibile = (colonnaMangiatore == colTarget - 1) || (colonnaMangiatore == colTarget + 1);
 

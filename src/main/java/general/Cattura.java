@@ -94,14 +94,16 @@ public class Cattura
             {
                 Partita.getRe()[0] = rigaTarget;
                 Partita.getRe()[1] = colTarget;
-            } else
+            }
+            else
             {
                 Partita.getRe()[2] = rigaTarget;
                 Partita.getRe()[TRE] = colTarget;
             }
             giocatore = Partita.getPlayer(); // passo il turno all'avversario
 
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, cattura non consentita!");
         }
@@ -131,7 +133,8 @@ public class Cattura
             if (m == null)
             {
                 System.out.println("   Mossa illegale, cattura non consentita!");
-            } else
+            }
+            else
             {
                 rigaMangiatore = Integer.valueOf(m.substring(0, 1)); // salvo la riga del Cavallo "mangiatore"
                 colMangiatore = Integer.valueOf(m.substring(2, TRE)); // salvo la colonna del Cavallo mangiatore
@@ -151,7 +154,8 @@ public class Cattura
                         GestoreStorico.aggiungiMossa(comando); // aggiungo la cattura allo storico mosse
                         GestoreStorico.aggiungiCattura(giocatore, pezzo); // aggiungo la cattura allo storico catture
                         giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                    } else
+                    }
+                    else
                     {
                         System.out.println("   Mossa illegale, cattura non consentita!");
                     }
@@ -161,7 +165,8 @@ public class Cattura
                     System.out.println("   Mossa illegale, cattura non consentita!");
                 }
             }
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, cattura non consentita!");
         }
@@ -193,7 +198,8 @@ public class Cattura
             if (m == null)
             {
                 System.out.println("   Mossa illegale, cattura non consentita!");
-            } else
+            }
+            else
             {
                 rigaMangiatore = Integer.valueOf(m.substring(0, 1)); // salvo la riga dell'Alfiere "mangiatore"
                 colMangiatore = Integer.valueOf(m.substring(2, TRE)); // salvo la colonna dell'Alfiere "mangiatore"
@@ -212,7 +218,8 @@ public class Cattura
                         GestoreStorico.aggiungiMossa(comando); // aggiungo la cattura allo storico mosse
                         GestoreStorico.aggiungiCattura(giocatore, pezzo); // aggiungo la cattura allo storico catture
                         giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                    } else
+                    }
+                    else
                     {
                         System.out.println("   Mossa illegale, cattura non consentita!");
                     }
@@ -222,7 +229,8 @@ public class Cattura
                     System.out.println("   Mossa illegale, cattura non consentita!");
                 }
             }
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, cattura non consentita!");
         }
@@ -253,7 +261,8 @@ public class Cattura
             if (m == null)
             {
                 System.out.println("   Mossa illegale, cattura non consentita!");
-            } else
+            }
+            else
             {
                 rigaMangiatore = Integer.valueOf(m.substring(0, 1)); // salvo la riga della Torre "mangiatrice"
                 colMangiatore = Integer.valueOf(m.substring(2, TRE)); // salvo la colonna della Torre "mangiatrice"
@@ -271,7 +280,8 @@ public class Cattura
                         GestoreStorico.aggiungiMossa(comando); // aggiungo la cattura allo storico mosse
                         GestoreStorico.aggiungiCattura(giocatore, pezzo); // aggiungo la cattura allo storico catture
                         giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                    } else
+                    }
+                    else
                     {
                         System.out.println("   Mossa illegale, cattura non consentita!");
                     }
@@ -281,7 +291,8 @@ public class Cattura
                     System.out.println("   Mossa illegale, cattura non consentita!");
                 }
             }
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, cattura non consentita!");
         }
@@ -332,7 +343,8 @@ public class Cattura
                         GestoreStorico.aggiungiMossa(comando); // aggiungo la cattura allo storico mosse
                         GestoreStorico.aggiungiCattura(giocatore, pezzo); // aggiungo la cattura allo storico catture
                         giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                    } else
+                    }
+                    else
                     {
                         System.out.println("   Mossa illegale, cattura non consentita!");
                     }
@@ -342,7 +354,8 @@ public class Cattura
                     System.out.println("   Mossa illegale, cattura non consentita!");
                 }
 
-            } else if (m2 != null)
+            }
+            else if (m2 != null)
             {
                 rigaMangiatore = Integer.valueOf(m2.substring(0, 1)); // salvo la riga della Donna "mangiatrice"
                 colMangiatore = Integer.valueOf(m2.substring(2, TRE)); // salvo la riga della Donna "mangiatrice"
@@ -360,7 +373,8 @@ public class Cattura
                         GestoreStorico.aggiungiMossa(comando); // aggiungo la cattura allo storico mosse
                         GestoreStorico.aggiungiCattura(giocatore, pezzo); // aggiungo la cattura allo storico catture
                         giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                    } else
+                    }
+                    else
                     {
                         System.out.println("   Mossa illegale, cattura non consentita!");
                     }
@@ -369,11 +383,13 @@ public class Cattura
                 {
                     System.out.println("   Mossa illegale, cattura non consentita!");
                 }
-            } else
+            }
+            else
             {
                 System.out.println("   Mossa illegale, cattura non consentita!");
             }
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, cattura non consentita!");
         }
@@ -404,7 +420,8 @@ public class Cattura
         if (giocatore.equals("bianco"))
         {
             offset = 1;
-        } else
+        }
+        else
         {
             offset = -1;
         }
@@ -428,7 +445,8 @@ public class Cattura
                                 spostamento, scacchiera);
 
                         // se e' possibile l'en passant
-                    } else if (scacchiera.getScacchiera()[rigaTarget + offset][colTarget] instanceof Pedone)
+                    }
+                    else if (scacchiera.getScacchiera()[rigaTarget + offset][colTarget] instanceof Pedone)
                     {
                         pezzo = scacchiera.getScacchiera()[rigaTarget + offset][colTarget];
                         spostamento = 1;
@@ -459,7 +477,8 @@ public class Cattura
             if (giocatore.equals("bianco"))
             {
                 offsetRiga = rigaTarget + 1;
-            } else
+            }
+            else
             {
                 offsetRiga = rigaTarget - 1;
             }
@@ -474,7 +493,8 @@ public class Cattura
             }
             p.cattura(rigaTarget, colTarget, scacchiera, giocatore, colMangiatore); // effettua la cattura
             giocatore = Partita.getPlayer(); // passa il turno all'avversario
-        } else
+        }
+        else
         {
             System.out.println("   Mossa illegale, cattura non consentita!");
         }
