@@ -5,14 +5,8 @@ import pezzi.*;
 /**
  * Control class Gestisce lo spostamento di un pezzo in base al comando ricevuto
  */
-public class Spostamento
-{
+public class Spostamento {
 
-    private static Pedone pPrec = null;
-    private static int spostamento = 0;
-    private String comando;
-    private String giocatore;
-    private Scacchiera scacchiera;
     private static final int COLRENERO = 3;
     private static final int RIGINB = 7;
     private static final int COLINB = 4;
@@ -23,6 +17,11 @@ public class Spostamento
     private static final int COLPAS2AC = 6;
     private static final int TRE = 3;
     private static final int QUATTRO = 4;
+    private static Pedone pPrec = null;
+    private static int spostamento = 0;
+    private String comando;
+    private String giocatore;
+    private Scacchiera scacchiera;
 
     /**
      * Costruttore
@@ -32,8 +31,7 @@ public class Spostamento
      * @param scacchieraRicevuta scacchiera
      */
     public Spostamento(final String comandoRicevuto, final String giocatoreRicevuto,
-                       final Scacchiera scacchieraRicevuta)
-    {
+            final Scacchiera scacchieraRicevuta) {
         this.comando = comandoRicevuto;
         this.giocatore = giocatoreRicevuto;
         this.scacchiera = scacchieraRicevuta;
@@ -41,13 +39,47 @@ public class Spostamento
     }
 
     /**
+     * Controlla se il re e' sotto scacco
+     *
+     * @param rigaRe     riga di destinazione
+     * @param colonnaRe  colonna di destinazione
+     * @param giocatore  richiedente spostamento del re
+     * @param scacchiera scacchiera
+     * @return sottoScacco true se le coordinate di destinazione portano il re sotto
+     *         scacco, false altrimenti
+     */
+    public static boolean isSottoScacco(final int rigaRe, final int colonnaRe, final String giocatore,
+            final Scacchiera scacchiera) {
+
+        boolean sottoScacco = true;
+        String tempGiocatore;
+
+        if (giocatore.equals("bianco")) {
+
+            tempGiocatore = "nero";
+        } else {
+            tempGiocatore = "bianco";
+        }
+
+        String alf = Ricerca.trovaDiagonale(rigaRe, colonnaRe, tempGiocatore, scacchiera, "Alfiere");
+        String tor = Ricerca.trovaLato(rigaRe, colonnaRe, tempGiocatore, scacchiera, "Torre");
+        String cav = Ricerca.trovaCavallo(rigaRe, colonnaRe, tempGiocatore, scacchiera);
+        String donnaDiagonale = Ricerca.trovaDiagonale(rigaRe, colonnaRe, tempGiocatore, scacchiera, "Donna");
+        String donnaLato = Ricerca.trovaLato(rigaRe, colonnaRe, tempGiocatore, scacchiera, "Donna");
+        String re = Ricerca.trovaRe(rigaRe, colonnaRe, tempGiocatore, scacchiera);
+
+        if ((alf == null && tor == null && cav == null && donnaDiagonale == null && donnaLato == null && re == null)) {
+            sottoScacco = false;
+        }
+        return sottoScacco;
+    }
+
+    /**
      * Esegue lo spostamento del pezzo richiesto
      */
-    public void interpreta()
-    {
+    public void interpreta() {
 
-        switch (comando.charAt(0))
-        {
+        switch (comando.charAt(0)) {
             case 'A':
                 spostamentoAlfiere();
                 break;
@@ -64,16 +96,11 @@ public class Spostamento
                 spostamentoRe();
                 break;
             default:
-                if (comando.equals("0-0") || comando.equals("O-O"))
-                {
+                if (comando.equals("0-0") || comando.equals("O-O")) {
                     spostamentoArrocco(0);
-                }
-                else if (comando.equals("0-0-0") || comando.equals("O-O-O"))
-                {
+                } else if (comando.equals("0-0-0") || comando.equals("O-O-O")) {
                     spostamentoArrocco(1);
-                }
-                else
-                {
+                } else {
                     spostamentoPedone();
                 }
                 break;
@@ -83,8 +110,7 @@ public class Spostamento
     /**
      * Esegue lo spostamento del re
      */
-    public void spostamentoRe()
-    {
+    public void spostamentoRe() {
 
         int spostamentoCol = Traduttore.traduciColonna(comando.charAt(1));
         int spostamentoRiga = Traduttore.traduciRiga(comando.charAt(2));
@@ -96,18 +122,14 @@ public class Spostamento
         // se la casella di destinazione e' vuota e se non porta il Re in una posizione
         // sotto scacco
         if (scacchiera.getScacchiera()[spostamentoRiga][spostamentoCol] == null
-                && !isSottoScacco(spostamentoRiga, spostamentoCol, giocatore, scacchiera))
-        {
+                && !isSottoScacco(spostamentoRiga, spostamentoCol, giocatore, scacchiera)) {
 
             m = Ricerca.trovaRe(spostamentoRiga, spostamentoCol, giocatore, scacchiera); // ricavo le coordinate di
             // partenza del Re
 
-            if (m == null)
-            {
+            if (m == null) {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
-            }
-            else
-            {
+            } else {
                 rigaPart = Integer.valueOf(m.substring(0, 1)); // riga di partenza del Re
                 colPart = Integer.valueOf(m.substring(2)); // colonna di partenza del Re
                 r = (Re) scacchiera.getScacchiera()[rigaPart][colPart];
@@ -115,21 +137,16 @@ public class Spostamento
                 System.out.println("   Mossa effettuata!");
                 GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
 
-                if (giocatore.equals("bianco"))
-                {
+                if (giocatore.equals("bianco")) {
                     Partita.getRe()[0] = spostamentoRiga;
                     Partita.getRe()[1] = spostamentoCol;
-                }
-                else
-                {
+                } else {
                     Partita.getRe()[2] = spostamentoRiga;
                     Partita.getRe()[COLRENERO] = spostamentoCol;
                 }
                 giocatore = Partita.getPlayer(); // passo il turno all'avversario
             }
-        }
-        else
-        {
+        } else {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
 
@@ -140,58 +157,42 @@ public class Spostamento
      *
      * @param tipo 0 se � arrocco corto, 1 se � arrocco lungo
      */
-    public void spostamentoArrocco(final int tipo)
-    {
+    public void spostamentoArrocco(final int tipo) {
 
         Re re1;
         int riga1 = RIGINB;
         int col1 = POSARR;
 
-        if (verificaCondizioniArrocco(tipo))
-        {
+        if (verificaCondizioniArrocco(tipo)) {
 
-            if (giocatore.equals("bianco"))
-            {
+            if (giocatore.equals("bianco")) {
                 re1 = (Re) scacchiera.getScacchiera()[RIGINB][COLINB];
-            }
-            else
-            {
+            } else {
                 re1 = (Re) scacchiera.getScacchiera()[RIGINN][COLINN];
             }
             re1.moveArrocco(giocatore, scacchiera, tipo);
             System.out.println("   Mossa effettuata!");
 
-            if (giocatore.equals("bianco"))
-            {
-                if (tipo == 0)
-                {
+            if (giocatore.equals("bianco")) {
+                if (tipo == 0) {
                     Partita.getRe()[0] = riga1;
                     Partita.getRe()[1] = col1;
-                }
-                else
-                {
+                } else {
                     Partita.getRe()[0] = riga1;
                     Partita.getRe()[1] = 2;
                 }
-            }
-            else
-            {
-                if (tipo == 0)
-                {
+            } else {
+                if (tipo == 0) {
                     Partita.getRe()[2] = 0;
                     Partita.getRe()[COLRENERO] = col1;
-                }
-                else
-                {
+                } else {
                     Partita.getRe()[2] = 0;
                     Partita.getRe()[COLRENERO] = 2;
                 }
             }
 
             giocatore = Partita.getPlayer(); // passo il turno all'avversario
-        }
-        else
-        {
+        } else {
             // SE LE CONDIZIONI NON SONO VERIFICATE
             System.out.println("   Mossa illegale, arrocco non consentito!");
         }
@@ -201,8 +202,7 @@ public class Spostamento
     /**
      * Gestisce lo spostamento del cavallo
      */
-    public void spostamentoCavallo()
-    {
+    public void spostamentoCavallo() {
 
         int spostamentoCol = Traduttore.traduciColonna(comando.charAt(1));
         int spostamentoRig = Traduttore.traduciRiga(comando.charAt(2));
@@ -210,38 +210,29 @@ public class Spostamento
         int rigaPart = 0;
         int colPart = 0;
 
-        if (scacchiera.getScacchiera()[spostamentoRig][spostamentoCol] == null)
-        {
+        if (scacchiera.getScacchiera()[spostamentoRig][spostamentoCol] == null) {
 
             // calcolo di quanto si deve spostare il Cavallo e le sue coordinate di partenza
             m = Ricerca.trovaCavallo(spostamentoRig, spostamentoCol, giocatore, scacchiera);
 
-            if (m == null)
-            {
+            if (m == null) {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
-            }
-            else
-            {
+            } else {
                 rigaPart = Integer.valueOf(m.substring(0, 1));
                 colPart = Integer.valueOf(m.substring(2, TRE));
                 spostamento = Integer.valueOf(m.substring(QUATTRO));
                 Cavallo c = (Cavallo) scacchiera.getScacchiera()[rigaPart][colPart];
 
-                if (c.move(rigaPart, colPart, spostamento, scacchiera))
-                { // se lo spostamento va a buon fine
+                if (c.move(rigaPart, colPart, spostamento, scacchiera)) { // se lo spostamento va a buon fine
                     System.out.println("   Mossa effettuata!");
                     GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                     giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                }
-                else
-                {
+                } else {
                     System.out.println("   Mossa illegale, spostamento non consentito!");
                 }
 
             }
-        }
-        else
-        {
+        } else {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
 
@@ -250,8 +241,7 @@ public class Spostamento
     /**
      * Gestisce lo spostamento dell'alfiere
      */
-    public void spostamentoAlfiere()
-    {
+    public void spostamentoAlfiere() {
 
         int spostamentoCol = Traduttore.traduciColonna(comando.charAt(1));
         int spostamentoRiga = Traduttore.traduciRiga(comando.charAt(2));
@@ -263,28 +253,22 @@ public class Spostamento
         // calcolo di quanto si deve spostare l'Alfiere e le sue coordinate di partenza
         m = Ricerca.trovaDiagonale(spostamentoRiga, spostamentoCol, giocatore, scacchiera, "Alfiere");
 
-        if (m == null)
-        {
+        if (m == null) {
             System.out.println("   Mossa illegale, spostamento non consentito!");
-        }
-        else
-        {
+        } else {
             rigaPart = Integer.valueOf(m.substring(0, 1));
             colPart = Integer.valueOf(m.substring(2, TRE));
             spostamento = Integer.valueOf(m.substring(QUATTRO));
             a = (Alfiere) scacchiera.getScacchiera()[rigaPart][colPart];
 
-            if (a.move(rigaPart, colPart, spostamentoRiga, spostamentoCol, spostamento, scacchiera))
-            { // se lo
+            if (a.move(rigaPart, colPart, spostamentoRiga, spostamentoCol, spostamento, scacchiera)) { // se lo
                 // spostamento
                 // va a buon
                 // fine
                 System.out.println("   Mossa effettuata!");
                 GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                 giocatore = Partita.getPlayer(); // passo il turno all'avversario
-            }
-            else
-            {
+            } else {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
             }
 
@@ -294,8 +278,7 @@ public class Spostamento
     /**
      * Gestisce lo spostamento della torre
      */
-    public void spostamentoTorre()
-    {
+    public void spostamentoTorre() {
 
         int spostamentoCol = Traduttore.traduciColonna(comando.charAt(1));
         int spostamentoRiga = Traduttore.traduciRiga(comando.charAt(2));
@@ -304,40 +287,31 @@ public class Spostamento
         int colPart = 0;
         Torre t = null;
 
-        if (scacchiera.getScacchiera()[spostamentoRiga][spostamentoCol] == null)
-        {
+        if (scacchiera.getScacchiera()[spostamentoRiga][spostamentoCol] == null) {
 
             // calcolo di quanto si deve spostare la Torre e le sue coordinate di partenza
             m = Ricerca.trovaLato(spostamentoRiga, spostamentoCol, giocatore, scacchiera, "Torre");
 
-            if (m == null)
-            {
+            if (m == null) {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
-            }
-            else
-            {
+            } else {
                 rigaPart = Integer.valueOf(m.substring(0, 1));
                 colPart = Integer.valueOf(m.substring(2, TRE));
                 spostamento = Integer.valueOf(m.substring(QUATTRO));
                 t = (Torre) scacchiera.getScacchiera()[rigaPart][colPart];
 
-                if (t.move(rigaPart, colPart, spostamentoRiga, spostamentoCol, spostamento, scacchiera))
-                {
+                if (t.move(rigaPart, colPart, spostamentoRiga, spostamentoCol, spostamento, scacchiera)) {
                     // se lo spostamento va a buon fine
                     System.out.println("   Mossa effettuata!");
                     GestoreStorico.aggiungiMossa(comando);
                     // aggiungo lo spostamento allo storico mosse
 
                     giocatore = Partita.getPlayer(); // passo il turno all'avversario
-                }
-                else
-                {
+                } else {
                     System.out.println("   Mossa illegale, spostamento non consentito!");
                 }
             }
-        }
-        else
-        {
+        } else {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
 
@@ -346,8 +320,7 @@ public class Spostamento
     /**
      * Gestisce lo spostamento della donna
      */
-    public void spostamentoDonna()
-    {
+    public void spostamentoDonna() {
 
         String m1, m2;
         int spostamentoCol = Traduttore.traduciColonna(comando.charAt(1));
@@ -362,48 +335,37 @@ public class Spostamento
         m2 = Ricerca.trovaLato(spostamentoRiga, spostamentoCol, giocatore, scacchiera, "Donna");
         // mi muovo sui lati alla ricerca di una donna e delle sue coordinate
 
-        if (m1 != null)
-        { // se ho trovato la Donna in diagonale
+        if (m1 != null) { // se ho trovato la Donna in diagonale
             rigaPart = Integer.valueOf(m1.substring(0, 1));
             colPart = Integer.valueOf(m1.substring(2, TRE));
             spostamento = Integer.valueOf(m1.substring(QUATTRO));
             d = (Donna) scacchiera.getScacchiera()[rigaPart][colPart];
 
-            if (d.moveDiagonale(rigaPart, colPart, spostamentoRiga, spostamentoCol, spostamento, scacchiera))
-            {
+            if (d.moveDiagonale(rigaPart, colPart, spostamentoRiga, spostamentoCol, spostamento, scacchiera)) {
                 // se lo spostamento va a buon fine
                 System.out.println("   Mossa effettuata!");
                 GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                 giocatore = Partita.getPlayer(); // passo il turno all'avversario
-            }
-            else
-            {
+            } else {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
             }
 
-        }
-        else if (m2 != null)
-        { // se ho trovato la Donna sui lati
+        } else if (m2 != null) { // se ho trovato la Donna sui lati
             rigaPart = Integer.valueOf(m2.substring(0, 1));
             colPart = Integer.valueOf(m2.substring(2, TRE));
             spostamento = Integer.valueOf(m2.substring(QUATTRO));
             d = (Donna) scacchiera.getScacchiera()[rigaPart][colPart];
 
-            if (d.moveLato(rigaPart, colPart, spostamentoRiga, spostamentoCol, spostamento, scacchiera))
-            {
+            if (d.moveLato(rigaPart, colPart, spostamentoRiga, spostamentoCol, spostamento, scacchiera)) {
                 // se lo spostamento va a buon fine
                 System.out.println("   Mossa effettuata!");
                 GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                 giocatore = Partita.getPlayer(); // passo il turno all'avversario
-            }
-            else
-            {
+            } else {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
             }
 
-        }
-        else
-        {
+        } else {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
     }
@@ -411,8 +373,7 @@ public class Spostamento
     /**
      * Gestisce lo spostamento del pedone
      */
-    public void spostamentoPedone()
-    {
+    public void spostamentoPedone() {
 
         // Traduco notazione algebrica negli indici della matrice
         int offset = 0;
@@ -420,52 +381,38 @@ public class Spostamento
         int spostamentoRiga = Traduttore.traduciRiga(comando.charAt(1));
 
         // se la posizione in cui ci si vuole spostare e' vuota
-        if (scacchiera.getScacchiera()[spostamentoRiga][spostamentoCol] == null)
-        {
+        if (scacchiera.getScacchiera()[spostamentoRiga][spostamentoCol] == null) {
 
             // calcolo di quanto si deve spostare il pedone
             spostamento = Ricerca.trovaPedone(spostamentoRiga, spostamentoCol, giocatore, scacchiera);
             Pedone p;
 
             // Calcolo la riga dalla quale parte il pedone che si vuole spostare
-            if (giocatore.equals("bianco"))
-            {
-                if (spostamento == 1)
-                {
+            if (giocatore.equals("bianco")) {
+                if (spostamento == 1) {
                     offset = spostamentoRiga + 1;
-                }
-                else
-                {
+                } else {
                     offset = spostamentoRiga + 2;
                 }
-            }
-            else if (spostamento == 1)
-            {
+            } else if (spostamento == 1) {
                 offset = spostamentoRiga - 1;
-            }
-            else
-            {
+            } else {
                 offset = spostamentoRiga - 2;
             }
 
             // Sposto il pedone in base al tipo di mossa
-            if (spostamento == 1 || spostamento == 2)
-            { // se e' possibile lo spostamento
+            if (spostamento == 1 || spostamento == 2) { // se e' possibile lo spostamento
 
                 p = (Pedone) scacchiera.getScacchiera()[offset][spostamentoCol];
                 p.setPrimaMossa(false);
 
-                if (pPrec != null)
-                { // reset del valore di en Passant pedone precedente
+                if (pPrec != null) { // reset del valore di en Passant pedone precedente
                     pPrec.setEnPassant(false);
                 }
 
-                if (spostamento == 1)
-                {
+                if (spostamento == 1) {
                     p.setEnPassant(false); // il pedone non potra' mai piu' essere catturato per enpassant
-                }
-                else
-                {
+                } else {
                     p.setEnPassant(true); // il pedone puo' essere catturato tramite enpassant solo per questo turno
                     pPrec = (Pedone) p;
                 }
@@ -473,29 +420,22 @@ public class Spostamento
                 scacchiera.getScacchiera()[offset][spostamentoCol] = p; // dopo aver modificato il pedone, lo rimetto
                 // nella
                 // scacchiera
-                if (p.move(spostamentoRiga, spostamentoCol, scacchiera, spostamento, giocatore))
-                { // se lo spostamento
+                if (p.move(spostamentoRiga, spostamentoCol, scacchiera, spostamento, giocatore)) { // se lo spostamento
                     // va
                     // a buon fine
 
                     System.out.println("   Mossa effettuata!");
                     GestoreStorico.aggiungiMossa(comando); // aggiungo lo spostamento allo storico mosse
                     giocatore = Partita.getPlayer();
-                }
-                else
-                {
+                } else {
                     System.out.println("   Mossa illegale");
                 }
-            }
-            else
-            {
+            } else {
                 System.out.println("   Mossa illegale, spostamento non consentito!");
             }
             offset = 0;
 
-        }
-        else
-        {
+        } else {
             System.out.println("   Mossa illegale, spostamento non consentito!");
         }
 
@@ -504,8 +444,7 @@ public class Spostamento
     /**
      * Verfica che ci siano le condizioni per arroccare
      */
-    public boolean verificaCondizioniArrocco(final int tipoArrocco)
-    {
+    public boolean verificaCondizioniArrocco(final int tipoArrocco) {
 
         int rigaPartRe = 0;
         final int colPartRe = 4;
@@ -521,26 +460,20 @@ public class Spostamento
 
         // Imposto gli indici in base al giocatore corrente e al tipo di arrocco
 
-        if (giocatore.equals("bianco"))
-        {
+        if (giocatore.equals("bianco")) {
             rigaPartRe = RIGINB;
             rigaPartTorre = RIGINB;
 
-        }
-        else
-        {
+        } else {
             rigaPartRe = 0;
             rigaPartTorre = 0;
         }
 
-        if (tipoArrocco == 0)
-        { // Se e' un arrocco corto
+        if (tipoArrocco == 0) { // Se e' un arrocco corto
             colPartTorre = RIGINB;
             passo1 = COLPAS1AC;
             passo2 = COLPAS2AC;
-        }
-        else
-        {
+        } else {
             colPartTorre = 0;
             passo1 = 1;
             passo2 = 2;
@@ -550,15 +483,12 @@ public class Spostamento
         // Individuo la torre e il re se esistono e sono in posizione iniziale
 
         if ((scacchiera.getScacchiera()[rigaPartTorre][colPartTorre] instanceof Torre)
-                && (scacchiera.getScacchiera()[rigaPartRe][colPartRe] instanceof Re))
-        {
+                && (scacchiera.getScacchiera()[rigaPartRe][colPartRe] instanceof Re)) {
 
             torreTemp = (Torre) scacchiera.getScacchiera()[rigaPartTorre][colPartTorre];
             reTemp = (Re) scacchiera.getScacchiera()[rigaPartRe][colPartRe];
             risultatoCond = true;
-        }
-        else
-        {
+        } else {
             risultatoCond = false;
         }
 
@@ -570,8 +500,7 @@ public class Spostamento
 
         risultatoCond = risultatoCond && (scacchiera.getScacchiera()[rigaPartRe][passo1] == null);
         risultatoCond = risultatoCond && (scacchiera.getScacchiera()[rigaPartRe][passo2] == null);
-        if (tipoArrocco == 1)
-        {
+        if (tipoArrocco == 1) {
             risultatoCond = risultatoCond && (scacchiera.getScacchiera()[rigaPartRe][1] == null);
         }
 
@@ -583,52 +512,10 @@ public class Spostamento
 
         risultatoCond = risultatoCond && (!isSottoScacco(rigaPartRe, passo1, giocatore, scacchiera));
         risultatoCond = risultatoCond && (!isSottoScacco(rigaPartRe, passo2, giocatore, scacchiera));
-        if (tipoArrocco == 1)
-        {
+        if (tipoArrocco == 1) {
             risultatoCond = risultatoCond && (!isSottoScacco(rigaPartRe, passo3, giocatore, scacchiera));
         }
         return risultatoCond;
-    }
-
-    /**
-     * Controlla se il re e' sotto scacco
-     *
-     * @param rigaRe     riga di destinazione
-     * @param colonnaRe  colonna di destinazione
-     * @param giocatore  richiedente spostamento del re
-     * @param scacchiera scacchiera
-     * @return sottoScacco true se le coordinate di destinazione portano il re sotto
-     * scacco, false altrimenti
-     */
-    public static boolean isSottoScacco(final int rigaRe, final int colonnaRe, final String giocatore,
-                                        final Scacchiera scacchiera)
-    {
-
-        boolean sottoScacco = true;
-        String tempGiocatore;
-
-        if (giocatore.equals("bianco"))
-        {
-
-            tempGiocatore = "nero";
-        }
-        else
-        {
-            tempGiocatore = "bianco";
-        }
-
-        String alf = Ricerca.trovaDiagonale(rigaRe, colonnaRe, tempGiocatore, scacchiera, "Alfiere");
-        String tor = Ricerca.trovaLato(rigaRe, colonnaRe, tempGiocatore, scacchiera, "Torre");
-        String cav = Ricerca.trovaCavallo(rigaRe, colonnaRe, tempGiocatore, scacchiera);
-        String donnaDiagonale = Ricerca.trovaDiagonale(rigaRe, colonnaRe, tempGiocatore, scacchiera, "Donna");
-        String donnaLato = Ricerca.trovaLato(rigaRe, colonnaRe, tempGiocatore, scacchiera, "Donna");
-        String re = Ricerca.trovaRe(rigaRe, colonnaRe, tempGiocatore, scacchiera);
-
-        if ((alf == null && tor == null && cav == null && donnaDiagonale == null && donnaLato == null && re == null))
-        {
-            sottoScacco = false;
-        }
-        return sottoScacco;
     }
 
 }

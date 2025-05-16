@@ -7,8 +7,7 @@ import general.Scacchiera;
  * Entity Class
  * Gestisce l'Alfiere
  */
-public class Alfiere extends Pezzo
-{
+public class Alfiere extends Pezzo {
 
     private static final int TRE = 3;
 
@@ -17,16 +16,14 @@ public class Alfiere extends Pezzo
      *
      * @param colore il colore dell'Alfiere
      */
-    public Alfiere(final char colore)
-    {
+    public Alfiere(final char colore) {
         this.setColore(colore);
     }
 
     /**
      * Costruttore vuoto
      */
-    public Alfiere()
-    {
+    public Alfiere() {
     }
 
     /**
@@ -41,41 +38,31 @@ public class Alfiere extends Pezzo
      * @return esito true se lo spostamento va a buon fine, false altrimenti
      */
     public boolean move(final int rigaPart, final int colPart, final int rigaDest, final int colDest,
-                        final int spostamento, final Scacchiera s)
-    {
+            final int spostamento, final Scacchiera s) {
 
         boolean esito = false;
         int x, y, caso;
 
         // in base alla posizione delle coordinate 'target' e di quelle di partenza, mi
         // muovo in un determinato modo in diagonale
-        if (rigaDest > rigaPart)
-        {
-            if (colDest > colPart)
-            {
+        if (rigaDest > rigaPart) {
+            if (colDest > colPart) {
                 x = rigaPart + 1;
                 y = colPart + 1;
                 caso = 0;
 
-            }
-            else
-            {
+            } else {
                 x = rigaPart + 1;
                 y = colPart - 1;
                 caso = 1;
             }
-        }
-        else
-        {
-            if (colDest > colPart)
-            {
+        } else {
+            if (colDest > colPart) {
                 x = rigaPart - 1;
                 y = colPart + 1;
                 caso = 2;
 
-            }
-            else
-            {
+            } else {
                 x = rigaPart - 1;
                 y = colPart - 1;
                 caso = TRE;
@@ -98,42 +85,32 @@ public class Alfiere extends Pezzo
      * @return esito true se la cattura va a buon fine, false altrimenti
      */
     public boolean cattura(final int rigaPart, final int colPart, final int rigaTarget, final int colTarget,
-                           final int spostamento, final Scacchiera s)
-    {
+            final int spostamento, final Scacchiera s) {
 
         boolean esito = false;
         int x, y, caso;
 
-        if (rigaTarget > rigaPart)
-        {
-            if (colTarget > colPart)
-            {
+        if (rigaTarget > rigaPart) {
+            if (colTarget > colPart) {
                 x = rigaPart + 1;
                 y = colPart + 1;
                 caso = 0;
 
-            }
-            else
-            {
+            } else {
 
                 x = rigaPart + 1;
                 y = colPart - 1;
                 caso = 1;
 
             }
-        }
-        else
-        {
-            if (colTarget > colPart)
-            {
+        } else {
+            if (colTarget > colPart) {
 
                 x = rigaPart - 1;
                 y = colPart + 1;
                 caso = 2;
 
-            }
-            else
-            {
+            } else {
 
                 x = rigaPart - 1;
                 y = colPart - 1;
@@ -149,14 +126,10 @@ public class Alfiere extends Pezzo
      * Modifica il codice unicode del pezzo in base al suo colore
      */
     @Override
-    public String getUniCode()
-    {
-        if (getColor() == 'N')
-        {
+    public String getUniCode() {
+        if (getColor() == 'N') {
             setCode("\u265D");
-        }
-        else
-        {
+        } else {
             setCode("\u2657");
         }
         return getCode();

@@ -7,19 +7,17 @@ import general.Scacchiera;
  * Entity Class
  * Gestisce la Torre
  */
-public class Torre extends Pezzo
-{
+public class Torre extends Pezzo {
 
-    private boolean primaMossa;
     private static final int CASO3 = 3;
+    private boolean primaMossa;
 
     /**
      * Costruttore
      *
      * @param colore il colore della torre
      */
-    public Torre(final char colore)
-    {
+    public Torre(final char colore) {
         this.setColore(colore);
         primaMossa = true;
     }
@@ -27,10 +25,10 @@ public class Torre extends Pezzo
     /**
      * Restituisce il valore della variabile primaMossa
      *
-     * @return primaMossa true se la torre deve ancora effettuare la prima mossa, false altrimenti
+     * @return primaMossa true se la torre deve ancora effettuare la prima mossa,
+     *         false altrimenti
      */
-    public boolean isPrimaMossa()
-    {
+    public boolean isPrimaMossa() {
         return primaMossa;
     }
 
@@ -46,8 +44,7 @@ public class Torre extends Pezzo
      * @return esito true se lo spostamento va a buon fine, false altrimenti
      */
     public boolean move(final int rigaPartenza, final int colPartenza, final int rigaDestinazione,
-                        final int colDestinazione, final int movement, final Scacchiera scacchiera)
-    {
+            final int colDestinazione, final int movement, final Scacchiera scacchiera) {
 
         int rigaPart = rigaPartenza;
         int colPart = colPartenza;
@@ -56,40 +53,31 @@ public class Torre extends Pezzo
         int spostamento = movement;
         Scacchiera s = scacchiera;
 
-
         boolean esito = false;
         int x = 0, y = 0, caso = 0;
 
         // in base alla posizione delle coordinate 'target' e di quelle di partenza, mi
         // muovo in un determinato lato
-        if (colDest == colPart)
-        {
-            if (rigaDest < rigaPart)
-            {
+        if (colDest == colPart) {
+            if (rigaDest < rigaPart) {
                 y = colDest;
                 x = rigaPart - 1;
                 caso = 0;
 
-            }
-            else
-            {
+            } else {
                 y = colDest;
                 x = rigaPart + 1;
                 caso = 1;
             }
         }
 
-        if (rigaDest == rigaPart)
-        {
-            if (colDest > colPart)
-            {
+        if (rigaDest == rigaPart) {
+            if (colDest > colPart) {
                 x = rigaDest;
                 y = colPart + 1;
                 caso = 2;
 
-            }
-            else
-            {
+            } else {
                 x = rigaDest;
                 y = colPart - 1;
                 caso = CASO3;
@@ -112,8 +100,7 @@ public class Torre extends Pezzo
      * @return esito true se la cattura va a buon fine, false altrimenti
      */
     public boolean cattura(final int rigaPartenza, final int colPartenza, final int rigaTarget,
-                           final int colTarget, final int movement, final Scacchiera scacchiera)
-    {
+            final int colTarget, final int movement, final Scacchiera scacchiera) {
 
         int rigaPart = rigaPartenza;
         int colPart = colPartenza;
@@ -125,33 +112,25 @@ public class Torre extends Pezzo
         boolean esito = false;
         int x = 0, y = 0, caso = 0;
 
-        if (colDest == colPart)
-        {
-            if (rigaDest < rigaPart)
-            {
+        if (colDest == colPart) {
+            if (rigaDest < rigaPart) {
                 y = colDest;
                 x = rigaPart - 1;
                 caso = 0;
-            }
-            else
-            {
+            } else {
                 y = colDest;
                 x = rigaPart + 1;
                 caso = 1;
             }
         }
 
-        if (rigaDest == rigaPart)
-        {
-            if (colDest > colPart)
-            {
+        if (rigaDest == rigaPart) {
+            if (colDest > colPart) {
                 x = rigaDest;
                 y = colPart + 1;
                 caso = 2;
 
-            }
-            else
-            {
+            } else {
                 x = rigaDest;
                 y = colPart - 1;
                 caso = CASO3;
@@ -165,14 +144,10 @@ public class Torre extends Pezzo
      * Modifica il codice unicode del pezzo in base al colore
      */
     @Override
-    public String getUniCode()
-    {
-        if (getColor() == 'N')
-        {
+    public String getUniCode() {
+        if (getColor() == 'N') {
             setCode("\u265C");
-        }
-        else
-        {
+        } else {
             setCode("\u2656");
         }
         return getCode();

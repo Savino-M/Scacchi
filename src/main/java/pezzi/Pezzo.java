@@ -4,8 +4,7 @@ package pezzi;
  * Entity Class
  * Rappresenta un Pezzo in maniera generica
  */
-public abstract class Pezzo
-{
+public abstract class Pezzo {
 
     private char colore;
     private String code;
@@ -22,8 +21,7 @@ public abstract class Pezzo
      *
      * @return colore il colore del pezzo
      */
-    public char getColor()
-    {
+    public char getColor() {
         return colore;
     }
 
@@ -32,8 +30,7 @@ public abstract class Pezzo
      *
      * @param coloreRicevuto il nuovo colore del pezzo
      */
-    public void setColore(final char coloreRicevuto)
-    {
+    public void setColore(final char coloreRicevuto) {
         this.colore = coloreRicevuto;
     }
 
@@ -42,8 +39,7 @@ public abstract class Pezzo
      *
      * @return code il codice unicode del pezzo
      */
-    public String getCode()
-    {
+    public String getCode() {
         return code;
     }
 
@@ -52,8 +48,7 @@ public abstract class Pezzo
      *
      * @param codeRicevuto il nuovo codice unicode del pezzo
      */
-    public void setCode(final String codeRicevuto)
-    {
+    public void setCode(final String codeRicevuto) {
         this.code = codeRicevuto;
     }
 }

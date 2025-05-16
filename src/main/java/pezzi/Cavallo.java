@@ -7,8 +7,7 @@ import general.Scacchiera;
  * Entity Class
  * Gestisce il Cavallo
  */
-public class Cavallo extends Pezzo
-{
+public class Cavallo extends Pezzo {
 
     private static final int CASO3 = 3;
     private static final int CASO4 = 4;
@@ -21,8 +20,7 @@ public class Cavallo extends Pezzo
      *
      * @param colore il colore del cavallo
      */
-    public Cavallo(final char colore)
-    {
+    public Cavallo(final char colore) {
         this.setColore(colore);
     }
 
@@ -36,8 +34,7 @@ public class Cavallo extends Pezzo
      * @return esito true se lo spostamento va a buon fine, false altrimenti
      */
     public boolean move(final int rigaPartenza, final int colonnaPartenza, final int spost,
-                        final Scacchiera scacchieraRic)
-    {
+            final Scacchiera scacchieraRic) {
 
         int rigaPart = rigaPartenza;
         int colonnaPart = colonnaPartenza;
@@ -46,8 +43,7 @@ public class Cavallo extends Pezzo
         boolean esito = false;
         int x = 0, y = 0;
 
-        switch (spostamento)
-        {
+        switch (spostamento) {
             case 0:
                 x = rigaPart - 1;
                 y = colonnaPart - 2;
@@ -97,8 +93,7 @@ public class Cavallo extends Pezzo
      * @return esito true se la cattura va a buon fine, false altrimenti
      */
     public boolean cattura(final int rigaPartenza, final int colPartenza, final int spost,
-                           final Scacchiera scacchieraRic)
-    {
+            final Scacchiera scacchieraRic) {
 
         int rigaPart = rigaPartenza;
         int colPart = colPartenza;
@@ -107,8 +102,7 @@ public class Cavallo extends Pezzo
         boolean esito = false;
         int x = 0, y = 0;
 
-        switch (spostamento)
-        {
+        switch (spostamento) {
             case 0:
                 x = rigaPart - 1;
                 y = colPart - 2;
@@ -152,14 +146,10 @@ public class Cavallo extends Pezzo
      * Modifica il codice Unicode del pezzo in base al suo colore
      */
     @Override
-    public String getUniCode()
-    {
-        if (getColor() == 'N')
-        {
+    public String getUniCode() {
+        if (getColor() == 'N') {
             setCode("\u265E");
-        }
-        else
-        {
+        } else {
             setCode("\u2658");
         }
         return getCode();

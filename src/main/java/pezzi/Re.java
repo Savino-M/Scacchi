@@ -6,8 +6,7 @@ import general.Scacchiera;
  * Entity Class
  * Gestisce il Re
  */
-public class Re extends Pezzo
-{
+public class Re extends Pezzo {
     private static final int CPARTRE = 4;
     private static final int CDESTRE = 6;
     private static final int CPARTORRE = 7;
@@ -22,8 +21,7 @@ public class Re extends Pezzo
      *
      * @param colore il colore del re
      */
-    public Re(final char colore)
-    {
+    public Re(final char colore) {
         primaMossa = true;
         this.setColore(colore);
     }
@@ -38,8 +36,7 @@ public class Re extends Pezzo
      * @param scacchieraRic    scacchiera
      */
     public void move(final int rigaPartenza, final int colPartenza, final int rigaDestinazione,
-                     final int colDestinazione, final Scacchiera scacchieraRic)
-    {
+            final int colDestinazione, final Scacchiera scacchieraRic) {
         int rigaPart = rigaPartenza;
         int colPart = colPartenza;
         int rigaDest = rigaDestinazione;
@@ -59,8 +56,7 @@ public class Re extends Pezzo
      * @param scacchieraRic scacchiera
      */
     public void cattura(final int rigaPartenza, final int colPartenza, final int rigaTarg, final int colTarg,
-                        final Scacchiera scacchieraRic)
-    {
+            final Scacchiera scacchieraRic) {
         int rigaPart = rigaPartenza;
         int colPart = colPartenza;
         int rigaTarget = rigaTarg;
@@ -74,14 +70,10 @@ public class Re extends Pezzo
      * Modifica il codice Unicode del pezzo in base al suo colore
      */
     @Override
-    public String getUniCode()
-    {
-        if (getColor() == 'N')
-        {
+    public String getUniCode() {
+        if (getColor() == 'N') {
             setCode("\u265A");
-        }
-        else
-        {
+        } else {
             setCode("\u2654");
         }
         return getCode();
@@ -90,10 +82,10 @@ public class Re extends Pezzo
     /**
      * Restituisce il valore della variabile primaMossa
      *
-     * @return primaMossa true se il re deve ancora effettuare la prima mossa, false altrimenti
+     * @return primaMossa true se il re deve ancora effettuare la prima mossa, false
+     *         altrimenti
      */
-    public boolean isPrimaMossa()
-    {
+    public boolean isPrimaMossa() {
         return primaMossa;
     }
 
@@ -102,8 +94,7 @@ public class Re extends Pezzo
      *
      * @param primaMossaRicevuto il nuovo valore delle variabile primaMossa
      */
-    public void setPrimaMossa(final boolean primaMossaRicevuto)
-    {
+    public void setPrimaMossa(final boolean primaMossaRicevuto) {
         this.primaMossa = primaMossaRicevuto;
     }
 
@@ -114,8 +105,7 @@ public class Re extends Pezzo
      * @param scacchieraRic scacchiera
      * @param tip           0 se l'arrocco � corto, 1 se lungo
      */
-    public void moveArrocco(final String gioc, final Scacchiera scacchieraRic, final int tip)
-    {
+    public void moveArrocco(final String gioc, final Scacchiera scacchieraRic, final int tip) {
         String giocatore = gioc;
         Scacchiera scacchiera = scacchieraRic;
         int tipo = tip;
@@ -129,27 +119,21 @@ public class Re extends Pezzo
 
         // Imposto gli indici in base al giocatore corrente
 
-        if (giocatore.equals("bianco"))
-        {
+        if (giocatore.equals("bianco")) {
             rigaPartRe = RPARTRE;
             rigaPartTorre = RPARTORRE;
-        }
-        else
-        {
+        } else {
             rigaPartRe = 0;
             rigaPartTorre = 0;
         }
 
         // Imposto gli indici in base al tipo di arrocco (lungo/corto)
 
-        if (tipo == 0)
-        {
+        if (tipo == 0) {
             colDestRe = colPartRe + 2;
             colPartTorre = CPARTORRE;
             colDestTorre = CDESTORRE;
-        }
-        else
-        {
+        } else {
             colDestRe = colPartRe - 2;
             colPartTorre = 0;
             colDestTorre = TORREARR;
@@ -163,8 +147,7 @@ public class Re extends Pezzo
                 .getScacchiera()[rigaPartTorre][colPartTorre];
         scacchiera.getScacchiera()[rigaPartTorre][colPartTorre] = null;
 
-        if (isPrimaMossa())
-        {
+        if (isPrimaMossa()) {
             setPrimaMossa(false);
         }
     }

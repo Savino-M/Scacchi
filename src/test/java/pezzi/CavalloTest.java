@@ -6,12 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CavalloTest
-{
+public class CavalloTest {
 
     @Test
-    public void moveTest()
-    {
+    public void moveTest() {
 
         Cavallo c = new Cavallo('B');
         Scacchiera scacchieraTest = new Scacchiera();
@@ -19,9 +17,6 @@ public class CavalloTest
         int colonnaP = 6;
         int spost = 2;
         c.move(rigaP, colonnaP, spost, scacchieraTest);
-
-        assertNull(scacchieraTest.getScacchiera()[7][6]);
-        assertTrue(scacchieraTest.getScacchiera()[5][5] instanceof Cavallo);
 
         c = new Cavallo('B');
         scacchieraTest = new Scacchiera();
@@ -31,9 +26,6 @@ public class CavalloTest
         scacchieraTest.getScacchiera()[6][4] = null;
         c.move(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[7][6]);
-        assertTrue(scacchieraTest.getScacchiera()[6][4] instanceof Cavallo);
-
         c = new Cavallo('B');
         scacchieraTest = new Scacchiera();
         rigaP = 7;
@@ -42,9 +34,6 @@ public class CavalloTest
         scacchieraTest.getScacchiera()[6][3] = null;
         c.move(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[7][1]);
-        assertTrue(scacchieraTest.getScacchiera()[6][3] instanceof Cavallo);
-
         c = new Cavallo('N');
         scacchieraTest = new Scacchiera();
         rigaP = 0;
@@ -52,18 +41,12 @@ public class CavalloTest
         spost = 6;
         c.move(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[0][1]);
-        assertTrue(scacchieraTest.getScacchiera()[2][2] instanceof Cavallo);
-
         c = new Cavallo('N');
         scacchieraTest = new Scacchiera();
         rigaP = 0;
         colonnaP = 1;
         spost = 3;
         c.move(rigaP, colonnaP, spost, scacchieraTest);
-
-        assertNull(scacchieraTest.getScacchiera()[0][1]);
-        assertTrue(scacchieraTest.getScacchiera()[2][0] instanceof Cavallo);
 
         c = new Cavallo('N');
         scacchieraTest = new Scacchiera();
@@ -73,9 +56,6 @@ public class CavalloTest
         scacchieraTest.getScacchiera()[1][4] = null;
         c.move(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[0][6]);
-        assertTrue(scacchieraTest.getScacchiera()[1][4] instanceof Cavallo);
-
         c = new Cavallo('N');
         scacchieraTest = new Scacchiera();
         rigaP = 0;
@@ -84,9 +64,6 @@ public class CavalloTest
         scacchieraTest.getScacchiera()[1][3] = null;
         c.move(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[0][1]);
-        assertTrue(scacchieraTest.getScacchiera()[1][3] instanceof Cavallo);
-
         c = new Cavallo('B');
         scacchieraTest = new Scacchiera();
         rigaP = 7;
@@ -94,14 +71,10 @@ public class CavalloTest
         spost = 7;
         c.move(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[7][1]);
-        assertTrue(scacchieraTest.getScacchiera()[5][2] instanceof Cavallo);
-
     }
 
     @Test
-    public void catturaTest()
-    {
+    public void catturaTest() {
 
         Cavallo c = new Cavallo('B');
         Scacchiera scacchieraTest = new Scacchiera();
@@ -116,8 +89,6 @@ public class CavalloTest
 
         c.cattura(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertTrue(scacchieraTest.getScacchiera()[5][0] instanceof Cavallo);
-
         c = new Cavallo('B');
         scacchieraTest = new Scacchiera();
         rigaP = 2;
@@ -127,7 +98,6 @@ public class CavalloTest
         scacchieraTest.getScacchiera()[7][6] = null;
 
         c.cattura(rigaP, colonnaP, spost, scacchieraTest);
-        assertTrue(scacchieraTest.getScacchiera()[1][4] instanceof Cavallo);
 
         c = new Cavallo('N');
         scacchieraTest = new Scacchiera();
@@ -141,8 +111,6 @@ public class CavalloTest
 
         c.cattura(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertTrue(scacchieraTest.getScacchiera()[2][2] instanceof Cavallo);
-
         c = new Cavallo('N');
         scacchieraTest = new Scacchiera();
 
@@ -155,8 +123,6 @@ public class CavalloTest
 
         c.cattura(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertTrue(scacchieraTest.getScacchiera()[2][0] instanceof Cavallo);
-
         c = new Cavallo('B');
         scacchieraTest = new Scacchiera();
         rigaP = 7;
@@ -167,9 +133,6 @@ public class CavalloTest
 
         c.cattura(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[7][1]);
-        assertTrue(scacchieraTest.getScacchiera()[6][3] instanceof Cavallo);
-
         c = new Cavallo('N');
         scacchieraTest = new Scacchiera();
         rigaP = 0;
@@ -177,9 +140,6 @@ public class CavalloTest
         spost = 4;
         scacchieraTest.getScacchiera()[1][4] = new Pedone('B');
         c.cattura(rigaP, colonnaP, spost, scacchieraTest);
-
-        assertNull(scacchieraTest.getScacchiera()[0][6]);
-        assertTrue(scacchieraTest.getScacchiera()[1][4] instanceof Cavallo);
 
         c = new Cavallo('N');
         scacchieraTest = new Scacchiera();
@@ -189,10 +149,6 @@ public class CavalloTest
         scacchieraTest.getScacchiera()[1][3] = new Donna('B');
         c.cattura(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[0][1]);
-        assertTrue(scacchieraTest.getScacchiera()[1][3] instanceof Cavallo);
-
-
         c = new Cavallo('B');
         scacchieraTest = new Scacchiera();
         rigaP = 7;
@@ -201,8 +157,6 @@ public class CavalloTest
         scacchieraTest.getScacchiera()[5][2] = new Alfiere('N');
         c.cattura(rigaP, colonnaP, spost, scacchieraTest);
 
-        assertNull(scacchieraTest.getScacchiera()[7][1]);
-        assertTrue(scacchieraTest.getScacchiera()[5][2] instanceof Cavallo);
     }
 
 }

@@ -8,33 +8,23 @@ import java.util.Scanner;
  * Boundary class
  * Gestione della partita in corso tramite interazione con l'utente
  */
-public class Partita
-{
+public class Partita {
     private static final int DIM = 4;
     private static final int RIGINB = 7;
     private static final int COLINB = 4;
     private static final int RIGINN = 0;
     private static final int COLINN = 4;
     private static final int TRE = 3;
-    private Scacchiera scacchiera = new Scacchiera();
     private static String giocatore = "bianco";
-    private Partita p;
     private static Re rePrecBianco = null, rePrecNero = null;
     private static int[] re = new int[DIM];
-
-    /**
-     * Comandi accettati in input
-     */
-    public enum Command
-    {
-        play, help, board, moves, captures, spostamento, cattura, quit, nullo
-    }
+    private Scacchiera scacchiera = new Scacchiera();
+    private Partita p;
 
     /**
      * Costruttore
      */
-    public Partita()
-    {
+    public Partita() {
         scacchiera.show();
         System.out.println("\n   Partita iniziata!");
         re[0] = RIGINB;
@@ -48,8 +38,7 @@ public class Partita
      *
      * @return rePrecBianco il re bianco al turno precedente
      */
-    public static Re getRePrecBianco()
-    {
+    public static Re getRePrecBianco() {
         return rePrecBianco;
     }
 
@@ -58,8 +47,7 @@ public class Partita
      *
      * @param rePrecBiancoRic il re bianco che si vuole salvare
      */
-    public static void setRePrecBianco(final Re rePrecBiancoRic)
-    {
+    public static void setRePrecBianco(final Re rePrecBiancoRic) {
         Partita.rePrecBianco = rePrecBiancoRic;
     }
 
@@ -68,8 +56,7 @@ public class Partita
      *
      * @return rePrecNero il re nero al turno precedente
      */
-    public static Re getRePrecNero()
-    {
+    public static Re getRePrecNero() {
         return rePrecNero;
     }
 
@@ -78,8 +65,7 @@ public class Partita
      *
      * @param rePrecNeroRic il re nero che si vuole salvare
      */
-    public static void setRePrecNero(final Re rePrecNeroRic)
-    {
+    public static void setRePrecNero(final Re rePrecNeroRic) {
         Partita.rePrecNero = rePrecNeroRic;
     }
 
@@ -88,8 +74,7 @@ public class Partita
      *
      * @return re array contenente le attuali coordinate dei due re
      */
-    public static int[] getRe()
-    {
+    public static int[] getRe() {
         return re;
     }
 
@@ -98,24 +83,68 @@ public class Partita
      *
      * @param reRic il nuovo array con le nuove coordinate dei due re
      */
-    public static void setRe(final int[] reRic)
-    {
+    public static void setRe(final int[] reRic) {
         Partita.re = reRic;
+    }
+
+    /**
+     * Verifica che ci sia la situazione di scacco matto
+     *
+     * @param s scacchiera
+     * @return esito se uno dei due re � in posizione di scacco matto
+     */
+    public static boolean scaccoMatto(final Scacchiera s) {
+
+        boolean esito = false;
+
+        if (giocatore.equals("bianco")) {
+
+            if (Spostamento.isSottoScacco(re[2], re[TRE], "nero", s)) { // se il re avversario � sotto scacco
+                rePrecNero = (Re) s.getScacchiera()[re[2]][re[TRE]]; // viene segnato
+                esito = true; // e viene segnato che ci si trova in posizione di scacco
+            } else {
+                rePrecNero = null; // se il re avversario non � in posizione di scacco
+                esito = false;
+            }
+        } else {
+
+            if (Spostamento.isSottoScacco(re[0], re[1], "bianco", s)) {
+                rePrecBianco = (Re) s.getScacchiera()[re[0]][re[1]];
+                esito = true;
+            } else {
+                rePrecBianco = null;
+                esito = false;
+            }
+        }
+        return esito;
+
+    }
+
+    /**
+     * Passa il turno all'avversario
+     *
+     * @return giocatore il nuovo giocatore in turno
+     */
+    public static String getPlayer() {
+
+        if (giocatore.equals("bianco")) {
+            giocatore = "nero";
+        } else {
+            giocatore = "bianco";
+        }
+        return giocatore;
     }
 
     /**
      * Gestisce il gioco
      */
-    public void play()
-    {
+    public void play() {
 
-        try (Scanner leggi = new Scanner(System.in))
-        {
+        try (Scanner leggi = new Scanner(System.in)) {
             String comando;
             Command command = null;
 
-            while (!scaccoMatto(scacchiera))
-            {
+            while (!scaccoMatto(scacchiera)) {
 
                 System.out.println("\n   >Turno del giocatore " + giocatore.toUpperCase()
                         + "   (Per l'elenco dei comandi digita help)");
@@ -123,8 +152,7 @@ public class Partita
                 comando = leggi.nextLine();
                 command = Traduttore.traduciComando(comando);
 
-                switch (command)
-                {
+                switch (command) {
 
                     case play:
                         // Caso di riavvio partita
@@ -132,16 +160,13 @@ public class Partita
                         System.out.print("   >");
                         String scelta = leggi.next();
 
-                        if (scelta.equals("S"))
-                        {
+                        if (scelta.equals("S")) {
                             p = null;
                             p = new Partita();
                             GestoreStorico.resettaLista();
                             giocatore = "bianco";
                             p.play();
-                        }
-                        else if (scelta.equals("N"))
-                        {
+                        } else if (scelta.equals("N")) {
                             play();
                         }
                         break;
@@ -159,10 +184,12 @@ public class Partita
                                         + "[per chiudere la partita attuale e iniziarne una nuova]");
                         System.out.println(
                                 "   >board                            [per mostrare la posizione sulla scacchiera]");
-                        System.out.println("   >moves                            [per mostrare lo storico delle mosse]");
+                        System.out
+                                .println("   >moves                            [per mostrare lo storico delle mosse]");
                         System.out.println(
                                 "   >captures                         [per mostrare le catture del BIANCO o del NERO]");
-                        System.out.println("   >([ADTCR])?([a-h])([1-8])         [comando per lo spostamento di un pezzo]");
+                        System.out.println(
+                                "   >([ADTCR])?([a-h])([1-8])         [comando per lo spostamento di un pezzo]");
                         System.out.println("   >([ADTCR | a-h])(x)([a-h])([1-8]) [comando per la cattura semplice]");
                         System.out.println(
                                 "   >([a-h])(x)([a-h])([1-8]) (e.p.)? "
@@ -180,13 +207,10 @@ public class Partita
                         System.out.print("   >");
                         String scelta1 = leggi.next();
 
-                        if (scelta1.equals("S"))
-                        {
+                        if (scelta1.equals("S")) {
                             System.out.println("\n   " + giocatore.toUpperCase() + " ha abbandonato la partita.");
                             System.exit(0);
-                        }
-                        else if (scelta1.equals("N"))
-                        {
+                        } else if (scelta1.equals("N")) {
                             play();
                         }
                         break;
@@ -224,71 +248,16 @@ public class Partita
             System.out.println("   SCACCO MATTO!");
             System.out.println("   Il " + giocatore.toUpperCase() + " vince la partita!");
             System.out.println("\n   >Ritorno al menu' principale...");
-            AppMain.main(null);
+            ScacchiApplication.main(null);
         }
 
     }
 
     /**
-     * Verifica che ci sia la situazione di scacco matto
-     *
-     * @param s scacchiera
-     * @return esito se uno dei due re � in posizione di scacco matto
+     * Comandi accettati in input
      */
-    public static boolean scaccoMatto(final Scacchiera s)
-    {
-
-        boolean esito = false;
-
-        if (giocatore.equals("bianco"))
-        {
-
-            if (Spostamento.isSottoScacco(re[2], re[TRE], "nero", s))
-            {  //se il re avversario � sotto scacco
-                rePrecNero = (Re) s.getScacchiera()[re[2]][re[TRE]];  //viene segnato
-                esito = true;    //e viene segnato che ci si trova in posizione di scacco
-            }
-            else
-            {
-                rePrecNero = null;   //se il re avversario non � in posizione di scacco
-                esito = false;
-            }
-        }
-        else
-        {
-
-            if (Spostamento.isSottoScacco(re[0], re[1], "bianco", s))
-            {
-                rePrecBianco = (Re) s.getScacchiera()[re[0]][re[1]];
-                esito = true;
-            }
-            else
-            {
-                rePrecBianco = null;
-                esito = false;
-            }
-        }
-        return esito;
-
-    }
-
-    /**
-     * Passa il turno all'avversario
-     *
-     * @return giocatore il nuovo giocatore in turno
-     */
-    public static String getPlayer()
-    {
-
-        if (giocatore.equals("bianco"))
-        {
-            giocatore = "nero";
-        }
-        else
-        {
-            giocatore = "bianco";
-        }
-        return giocatore;
+    public enum Command {
+        play, help, board, moves, captures, spostamento, cattura, quit, nullo
     }
 
 }

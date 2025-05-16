@@ -6,8 +6,7 @@ import general.Scacchiera;
  * Entity Class
  * Gestisce il Pedone
  */
-public class Pedone extends Pezzo
-{
+public class Pedone extends Pezzo {
 
     private boolean primaMossa;
     private boolean enPassant = false;
@@ -17,52 +16,9 @@ public class Pedone extends Pezzo
      *
      * @param colore il colore del pedone
      */
-    public Pedone(final char colore)
-    {
+    public Pedone(final char colore) {
         primaMossa = true;
         this.setColore(colore);
-    }
-
-    /**
-     * Restituisce la variabile primaMossa
-     *
-     * @return primaMossa true se il pedone deve ancora effettuare la prima mossa, false altrimenti
-     */
-    public boolean isPrimaMossa()
-    {
-        return primaMossa;
-    }
-
-    /**
-     * Restituisce la variabile isEnPassant
-     *
-     * @return enPassant restituisce true se il pedone pu� eseguire una cattura per en passant, false altrimenti
-     */
-    public boolean isEnPassant()
-    {
-        return enPassant;
-    }
-
-    /**
-     * Modifica la variabile primaMossa
-     *
-     * @param newPrimaMossa il nuovo valore della variabile primaMossa
-     */
-    public void setPrimaMossa(final boolean newPrimaMossa)
-    {
-        this.primaMossa = newPrimaMossa;
-
-    }
-
-    /**
-     * Modifica la variabile enPassant
-     *
-     * @param newEnPassant il nuovo valore della variabile enPassant
-     */
-    public void setEnPassant(final boolean newEnPassant)
-    {
-        this.enPassant = newEnPassant;
-
     }
 
     /**
@@ -72,31 +28,67 @@ public class Pedone extends Pezzo
      * @param colTarget  colonna del pezzo da catturare
      * @param giocatore  richiedente cattura
      * @param scacchiera scacchiera
-     * @return esito true se il pedone ha appena fatto il passo da due, false altrimenti
+     * @return esito true se il pedone ha appena fatto il passo da due, false
+     *         altrimenti
      */
     public static boolean enPassant(final int rigaTarget, final int colTarget,
-                                    final String giocatore, final Scacchiera scacchiera)
-    {
+            final String giocatore, final Scacchiera scacchiera) {
 
         boolean esito = false;
         int offset;
 
-        if (giocatore.equals("bianco"))
-        {
+        if (giocatore.equals("bianco")) {
             offset = 1;
-        }
-        else
-        {
+        } else {
             offset = -1;
         }
 
         Pedone p = (Pedone) scacchiera.getScacchiera()[rigaTarget + offset][colTarget];
-        if (p.isEnPassant())
-        { // se il pedone si e' appena spostato di due righe al turno precedente
+        if (p.isEnPassant()) { // se il pedone si e' appena spostato di due righe al turno precedente
             esito = true;
             p.setEnPassant(false);
         }
         return esito;
+
+    }
+
+    /**
+     * Restituisce la variabile primaMossa
+     *
+     * @return primaMossa true se il pedone deve ancora effettuare la prima mossa,
+     *         false altrimenti
+     */
+    public boolean isPrimaMossa() {
+        return primaMossa;
+    }
+
+    /**
+     * Modifica la variabile primaMossa
+     *
+     * @param newPrimaMossa il nuovo valore della variabile primaMossa
+     */
+    public void setPrimaMossa(final boolean newPrimaMossa) {
+        this.primaMossa = newPrimaMossa;
+
+    }
+
+    /**
+     * Restituisce la variabile isEnPassant
+     *
+     * @return enPassant restituisce true se il pedone pu� eseguire una cattura per
+     *         en passant, false altrimenti
+     */
+    public boolean isEnPassant() {
+        return enPassant;
+    }
+
+    /**
+     * Modifica la variabile enPassant
+     *
+     * @param newEnPassant il nuovo valore della variabile enPassant
+     */
+    public void setEnPassant(final boolean newEnPassant) {
+        this.enPassant = newEnPassant;
 
     }
 
@@ -111,45 +103,33 @@ public class Pedone extends Pezzo
      * @return valid true se lo spostamento va a buon fine, false altrimenti
      */
     public boolean move(final int rigaDest, final int colonnaDest, final Scacchiera s,
-                        final int tipo, final String giocatore)
-    {
+            final int tipo, final String giocatore) {
 
         Pezzo temp;
         boolean valid = false;
 
-        if (tipo == 1)
-        { // spostamento di una riga
-            if (giocatore.equals("nero"))
-            {
+        if (tipo == 1) { // spostamento di una riga
+            if (giocatore.equals("nero")) {
                 temp = s.getScacchiera()[rigaDest - 1][colonnaDest];
                 s.getScacchiera()[rigaDest][colonnaDest] = temp;
                 s.getScacchiera()[rigaDest - 1][colonnaDest] = null;
-            }
-            else
-            {
+            } else {
                 temp = s.getScacchiera()[rigaDest + 1][colonnaDest];
                 s.getScacchiera()[rigaDest][colonnaDest] = temp;
                 s.getScacchiera()[rigaDest + 1][colonnaDest] = null;
             }
             valid = true;
-        }
-        else
-        { // spostamento di due righe
+        } else { // spostamento di due righe
 
-            if (giocatore.equals("nero"))
-            {
-                if (s.getScacchiera()[rigaDest - 1][colonnaDest] == null)
-                {
+            if (giocatore.equals("nero")) {
+                if (s.getScacchiera()[rigaDest - 1][colonnaDest] == null) {
                     temp = s.getScacchiera()[rigaDest - 2][colonnaDest];
                     s.getScacchiera()[rigaDest][colonnaDest] = temp;
                     s.getScacchiera()[rigaDest - 2][colonnaDest] = null;
                     valid = true;
                 }
-            }
-            else
-            {
-                if (s.getScacchiera()[rigaDest + 1][colonnaDest] == null)
-                {
+            } else {
+                if (s.getScacchiera()[rigaDest + 1][colonnaDest] == null) {
                     temp = s.getScacchiera()[rigaDest + 2][colonnaDest];
                     s.getScacchiera()[rigaDest][colonnaDest] = temp;
                     s.getScacchiera()[rigaDest + 2][colonnaDest] = null;
@@ -172,22 +152,17 @@ public class Pedone extends Pezzo
      * @param colMangiatore colonna del pezzo mangiatore
      */
     public void cattura(final int rigaTarget, final int colTarget, final Scacchiera s,
-                        final String giocatore, final int colMangiatore)
-    {
+            final String giocatore, final int colMangiatore) {
 
         int offset = 0;
 
-        if (giocatore.equals("bianco"))
-        {
+        if (giocatore.equals("bianco")) {
             offset = 1;
-        }
-        else
-        {
+        } else {
             offset = -1;
         }
 
-        if (s.getScacchiera()[rigaTarget][colTarget] == null)
-        { // se e' una cattura per enpassant
+        if (s.getScacchiera()[rigaTarget][colTarget] == null) { // se e' una cattura per enpassant
             s.getScacchiera()[rigaTarget + offset][colTarget] = null; // rimuovo il pedone da mangiare
         }
 
@@ -204,15 +179,11 @@ public class Pedone extends Pezzo
      * Modifica il codice unicode del pezzo in base al suo colore
      */
     @Override
-    public String getUniCode()
-    {
+    public String getUniCode() {
 
-        if (getColor() == 'N')
-        {
+        if (getColor() == 'N') {
             setCode("\u265F");
-        }
-        else
-        {
+        } else {
             setCode("\u2659");
         }
 

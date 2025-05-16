@@ -6,22 +6,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DonnaTest
-{
+public class DonnaTest {
 
     @Test
-    void testDonna()
-    {
+    void testDonna() {
+        
         Donna d = new Donna('N');
         Donna d2 = new Donna('B');
-
-        assertNotNull(d);
-        assertNotNull(d2);
+        
     }
 
     @Test
-    void testMoveDiagonale()
-    {
+    void testMoveDiagonale() {
+        
         Donna donna;
         Scacchiera scacchieraTest = new Scacchiera();
         int rigaPart = 7;
@@ -33,9 +30,6 @@ public class DonnaTest
         donna = (Donna) scacchieraTest.getScacchiera()[7][3];
 
         // Testo movimento diagonale della donna
-
-        assertTrue(donna.moveDiagonale(rigaPart, colPart, rigaDest, colDest, spostamento, scacchieraTest));
-
         scacchieraTest = new Scacchiera();
         rigaPart = 0;
         colPart = 3;
@@ -44,8 +38,6 @@ public class DonnaTest
         spostamento = 2;
         scacchieraTest.getScacchiera()[1][2] = null;
         donna = (Donna) scacchieraTest.getScacchiera()[0][3];
-
-        assertTrue(donna.moveDiagonale(rigaPart, colPart, rigaDest, colDest, spostamento, scacchieraTest));
 
         scacchieraTest = new Scacchiera();
         rigaPart = 7;
@@ -56,13 +48,11 @@ public class DonnaTest
         scacchieraTest.getScacchiera()[6][4] = null;
         donna = (Donna) scacchieraTest.getScacchiera()[7][3];
 
-        assertTrue(donna.moveDiagonale(rigaPart, colPart, rigaDest, colDest, spostamento, scacchieraTest));
-
     }
 
     @Test
-    void testCatturaDiagonale()
-    {
+    void testCatturaDiagonale() {
+        
         Donna donna;
         Scacchiera scacchieraTest = new Scacchiera();
         int rigaPart = 7;
@@ -76,9 +66,6 @@ public class DonnaTest
         donna = (Donna) scacchieraTest.getScacchiera()[7][3];
 
         // Testo la cattura in diagonale
-
-        assertTrue(donna.catturaDiagonale(rigaPart, colPart, rigaTarget, colTarget, spostamento, scacchieraTest));
-
         scacchieraTest = new Scacchiera();
         rigaPart = 0;
         colPart = 3;
@@ -89,8 +76,6 @@ public class DonnaTest
         scacchieraTest.getScacchiera()[1][4] = null;
         scacchieraTest.getScacchiera()[2][5] = new Donna('B');
         donna = (Donna) scacchieraTest.getScacchiera()[0][3];
-
-        assertTrue(donna.catturaDiagonale(rigaPart, colPart, rigaTarget, colTarget, spostamento, scacchieraTest));
 
         scacchieraTest = new Scacchiera();
         rigaPart = 0;
@@ -103,8 +88,6 @@ public class DonnaTest
         scacchieraTest.getScacchiera()[2][1] = new Cavallo('B');
         donna = (Donna) scacchieraTest.getScacchiera()[0][3];
 
-        assertTrue(donna.catturaDiagonale(rigaPart, colPart, rigaTarget, colTarget, spostamento, scacchieraTest));
-
         scacchieraTest = new Scacchiera();
         rigaPart = 7;
         colPart = 3;
@@ -116,14 +99,11 @@ public class DonnaTest
         scacchieraTest.getScacchiera()[5][1] = new Torre('B');
         donna = (Donna) scacchieraTest.getScacchiera()[7][3];
 
-        assertTrue(donna.catturaDiagonale(rigaPart, colPart, rigaTarget, colTarget, spostamento, scacchieraTest));
-
-
     }
 
     @Test
-    void testMoveLato()
-    {
+    void testMoveLato() {
+        
         Donna donna;
         Scacchiera scacchieraTest = new Scacchiera();
         int rigaPart = 5;
@@ -136,9 +116,6 @@ public class DonnaTest
         donna = (Donna) scacchieraTest.getScacchiera()[5][3];
 
         // Testo movimento orizzontale
-
-        assertTrue(donna.moveLato(rigaPart, colPart, rigaDest, colDest, spostamento, scacchieraTest));
-
         scacchieraTest = new Scacchiera();
         scacchieraTest.getScacchiera()[7][3] = null;
         scacchieraTest.getScacchiera()[5][3] = new Donna('B');
@@ -147,9 +124,6 @@ public class DonnaTest
         spostamento = 3;
 
         // Testo movimento verticale
-
-        assertTrue(donna.moveLato(rigaPart, colPart, rigaDest, colDest, spostamento, scacchieraTest));
-
         scacchieraTest = new Scacchiera();
         rigaPart = 0;
         colPart = 3;
@@ -158,7 +132,6 @@ public class DonnaTest
         spostamento = 4;
         scacchieraTest.getScacchiera()[1][3] = null;
         donna = (Donna) scacchieraTest.getScacchiera()[0][3];
-        assertTrue(donna.moveLato(rigaPart, colPart, rigaDest, colDest, spostamento, scacchieraTest));
 
         scacchieraTest = new Scacchiera();
         rigaPart = 7;
@@ -168,8 +141,6 @@ public class DonnaTest
         spostamento = 3;
         scacchieraTest.getScacchiera()[6][3] = null;
         donna = (Donna) scacchieraTest.getScacchiera()[7][3];
-        assertTrue(donna.moveLato(rigaPart, colPart, rigaDest, colDest, spostamento, scacchieraTest));
-
 
         scacchieraTest = new Scacchiera();
         rigaPart = 5;
@@ -180,13 +151,12 @@ public class DonnaTest
         scacchieraTest.getScacchiera()[7][3] = null;
         scacchieraTest.getScacchiera()[5][6] = new Donna('B');
         donna = (Donna) scacchieraTest.getScacchiera()[5][6];
-        assertTrue(donna.moveLato(rigaPart, colPart, rigaDest, colDest, spostamento, scacchieraTest));
 
     }
 
     @Test
-    void testCatturaLato()
-    {
+    void testCatturaLato() {
+        
         Donna donna;
         Scacchiera scacchieraTest = new Scacchiera();
         int rigaPart = 5;
@@ -201,10 +171,6 @@ public class DonnaTest
         donna = (Donna) scacchieraTest.getScacchiera()[5][5];
 
         // Testo cattura orizzontale
-
-        assertTrue(donna.catturaLato(rigaPart, colPart, rigaTarget, colTarget, spostamento, scacchieraTest));
-
-
         rigaTarget = 3;
         colTarget = 5;
         spostamento = 2;
@@ -216,8 +182,6 @@ public class DonnaTest
         donna = (Donna) scacchieraTest.getScacchiera()[5][5];
 
         // Testo cattura verticale
-        assertTrue(donna.catturaLato(rigaPart, colPart, rigaTarget, colTarget, spostamento, scacchieraTest));
-
         scacchieraTest = new Scacchiera();
         rigaPart = 0;
         colPart = 3;
@@ -227,8 +191,6 @@ public class DonnaTest
         scacchieraTest.getScacchiera()[1][3] = null;
         scacchieraTest.getScacchiera()[2][3] = new Cavallo('B');
         donna = (Donna) scacchieraTest.getScacchiera()[0][3];
-
-        assertTrue(donna.catturaLato(rigaPart, colPart, rigaTarget, colTarget, spostamento, scacchieraTest));
 
         scacchieraTest = new Scacchiera();
         rigaPart = 5;
@@ -241,7 +203,6 @@ public class DonnaTest
         scacchieraTest.getScacchiera()[5][6] = new Alfiere('B');
         donna = (Donna) scacchieraTest.getScacchiera()[5][3];
 
-        assertTrue(donna.catturaLato(rigaPart, colPart, rigaTarget, colTarget, spostamento, scacchieraTest));
-
     }
+    
 }

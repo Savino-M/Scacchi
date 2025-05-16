@@ -9,16 +9,7 @@ import java.util.regex.Pattern;
  * noECB
  * Traduce il comando ricevuto dall'utente
  */
-public final class Traduttore
-{
-
-    /**
-     * Costruttore
-     */
-    private Traduttore()
-    {
-        // non chiamato
-    }
+public final class Traduttore {
 
     private static final int NUMRIGHE = 8;
     private static final int TRE = 3;
@@ -28,13 +19,19 @@ public final class Traduttore
     private static final int SETTE = 7;
 
     /**
+     * Costruttore
+     */
+    private Traduttore() {
+        // non chiamato
+    }
+
+    /**
      * Ricava la riga della matrice(scacchiera)
      *
      * @param notazioneRiga riga inserita dall'utente
      * @return riga riga nella matrice
      */
-    public static int traduciRiga(final char notazioneRiga)
-    {
+    public static int traduciRiga(final char notazioneRiga) {
 
         int riga = Integer.parseInt(String.valueOf(notazioneRiga));
         riga = NUMRIGHE - riga;
@@ -48,13 +45,11 @@ public final class Traduttore
      * @param notazioneColonna colonna inserita dall'utente
      * @return colonna colonna della matrice
      */
-    public static int traduciColonna(final char notazioneColonna)
-    {
+    public static int traduciColonna(final char notazioneColonna) {
 
         int colonna = 0;
 
-        switch (notazioneColonna)
-        {
+        switch (notazioneColonna) {
 
             case 'a':
                 colonna = 0;
@@ -100,8 +95,7 @@ public final class Traduttore
      * @param comando comando inserito dall'utente
      * @return command operazione richiesta dall'utente
      */
-    public static Command traduciComando(final String comando)
-    {
+    public static Command traduciComando(final String comando) {
 
         Command command = null;
 
@@ -119,41 +113,24 @@ public final class Traduttore
         Pattern p1 = Pattern.compile(capturePawn);
         Matcher matcher1 = p1.matcher(comando);
 
-        if (comando.equals("play"))
-        {
-            command = general.Partita.Command.play;
-        }
-        else if (comando.equals("board"))
-        {
-            command = general.Partita.Command.board;
-        }
-        else if (comando.equals("help"))
-        {
-            command = general.Partita.Command.help;
-        }
-        else if (comando.equals("quit"))
-        {
-            command = general.Partita.Command.quit;
-        }
-        else if (comando.equals("moves"))
-        {
-            command = general.Partita.Command.moves;
-        }
-        else if (comando.equals("captures"))
-        {
-            command = general.Partita.Command.captures;
-        }
-        else if (matcher.matches() || arrocco)
-        { // Se il comando rispecchia uno spostamento
-            command = general.Partita.Command.spostamento;
-        }
-        else if (matcher1.matches())
-        { // Se il comando rispecchia una cattura
-            command = general.Partita.Command.cattura;
-        }
-        else
-        {
-            command = general.Partita.Command.nullo;
+        if (comando.equals("play")) {
+            command = Partita.Command.play;
+        } else if (comando.equals("board")) {
+            command = Partita.Command.board;
+        } else if (comando.equals("help")) {
+            command = Partita.Command.help;
+        } else if (comando.equals("quit")) {
+            command = Partita.Command.quit;
+        } else if (comando.equals("moves")) {
+            command = Partita.Command.moves;
+        } else if (comando.equals("captures")) {
+            command = Partita.Command.captures;
+        } else if (matcher.matches() || arrocco) { // Se il comando rispecchia uno spostamento
+            command = Partita.Command.spostamento;
+        } else if (matcher1.matches()) { // Se il comando rispecchia una cattura
+            command = Partita.Command.cattura;
+        } else {
+            command = Partita.Command.nullo;
         }
 
         return command;

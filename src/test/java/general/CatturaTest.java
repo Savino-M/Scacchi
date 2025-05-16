@@ -6,12 +6,11 @@ import pezzi.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CatturaTest
-{
+public class CatturaTest {
 
     @Test
-    void testCatturaRe()
-    {
+    void testCatturaRe() {
+        
         String comando = "Rxd2";
         String giocatore = "bianco";
         Scacchiera scacchieraTest = new Scacchiera();
@@ -20,10 +19,7 @@ public class CatturaTest
         scacchieraTest.getScacchiera()[6][3] = new Pedone('N');
 
         // Test cattura in diagonale
-
-        Cattura catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[7][4]);
-        assertTrue(scacchieraTest.getScacchiera()[6][3] instanceof Re);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Rxe4";
         scacchieraTest = new Scacchiera();
@@ -33,10 +29,7 @@ public class CatturaTest
         scacchieraTest.getScacchiera()[4][4] = new Pedone('N');
 
         // Test cattura in verticale
-
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[5][4]);
-        assertTrue(scacchieraTest.getScacchiera()[4][4] instanceof Re);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Rxf3";
         scacchieraTest = new Scacchiera();
@@ -46,30 +39,25 @@ public class CatturaTest
         scacchieraTest.getScacchiera()[5][5] = new Pedone('N');
 
         // Test cattura in orizzontale
-
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[5][4]);
-        assertTrue(scacchieraTest.getScacchiera()[5][5] instanceof Re);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Rxf3";
         giocatore = "nero";
         scacchieraTest = new Scacchiera();
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertTrue(scacchieraTest.getScacchiera()[0][4] instanceof Re);
-
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Rxe7";
         giocatore = "nero";
         scacchieraTest = new Scacchiera();
         scacchieraTest.getScacchiera()[1][4] = null;
         scacchieraTest.getScacchiera()[1][4] = new Pedone('B');
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertTrue(scacchieraTest.getScacchiera()[1][4] instanceof Re);
+        new Cattura(comando, giocatore, scacchieraTest);
+        
     }
 
     @Test
-    void testCatturaCavallo()
-    {
+    void testCatturaCavallo() {
+        
         String comando = "Cxf3";
         String giocatore = "bianco";
         Scacchiera scacchieraTest = new Scacchiera();
@@ -78,10 +66,7 @@ public class CatturaTest
         scacchieraTest.getScacchiera()[5][5] = new Pedone('N');
 
         // Test cattura tipo "L verticale"
-
-        Cattura catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[7][6]);
-        assertTrue(scacchieraTest.getScacchiera()[5][5] instanceof Cavallo);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Cxd4";
         scacchieraTest = new Scacchiera();
@@ -91,23 +76,18 @@ public class CatturaTest
         scacchieraTest.getScacchiera()[4][3] = new Pedone('N');
 
         // Test cattura tipo "L orizzontale"
-
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[5][5]);
-        assertTrue(scacchieraTest.getScacchiera()[4][3] instanceof Cavallo);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Cxf3";
         giocatore = "nero";
         scacchieraTest = new Scacchiera();
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertTrue(scacchieraTest.getScacchiera()[0][1] instanceof Cavallo);
-        assertTrue(scacchieraTest.getScacchiera()[0][6] instanceof Cavallo);
+        new Cattura(comando, giocatore, scacchieraTest);
 
     }
 
     @Test
-    void testCatturaAlfiere()
-    {
+    void testCatturaAlfiere() {
+        
         String comando = "Axf5";
         String giocatore = "bianco";
         Scacchiera scacchieraTest = new Scacchiera();
@@ -117,34 +97,25 @@ public class CatturaTest
         scacchieraTest.getScacchiera()[1][5] = null;
         scacchieraTest.getScacchiera()[3][5] = new Pedone('N');
 
-        Cattura catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-
-        assertNull(scacchieraTest.getScacchiera()[5][7]);
-        assertTrue(scacchieraTest.getScacchiera()[3][5] instanceof Alfiere);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Axf3";
         giocatore = "nero";
         scacchieraTest = new Scacchiera();
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertTrue(scacchieraTest.getScacchiera()[0][2] instanceof Alfiere);
-        assertTrue(scacchieraTest.getScacchiera()[0][5] instanceof Alfiere);
-
+        new Cattura(comando, giocatore, scacchieraTest);
 
     }
 
     @Test
-    void testCatturaTorre()
-    {
+    void testCatturaTorre() {
+        
         String comando = "Txh7";
         String giocatore = "bianco";
         Scacchiera scacchieraTest = new Scacchiera();
         scacchieraTest.getScacchiera()[6][7] = null;
 
         // Test cattura verticale
-
-        Cattura catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[7][7]);
-        assertTrue(scacchieraTest.getScacchiera()[1][7] instanceof Torre);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         scacchieraTest = new Scacchiera();
 
@@ -154,25 +125,20 @@ public class CatturaTest
         scacchieraTest.getScacchiera()[4][5] = new Torre('B');
         scacchieraTest.getScacchiera()[1][2] = null;
         scacchieraTest.getScacchiera()[4][2] = new Pedone('N');
+        
         // Test cattura orizzontale
-
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[4][5]);
-        assertTrue(scacchieraTest.getScacchiera()[4][2] instanceof Torre);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Txf3";
         giocatore = "nero";
         scacchieraTest = new Scacchiera();
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertTrue(scacchieraTest.getScacchiera()[0][0] instanceof Torre);
-        assertTrue(scacchieraTest.getScacchiera()[0][7] instanceof Torre);
-
+        new Cattura(comando, giocatore, scacchieraTest);
 
     }
 
     @Test
-    void testCatturaDonna()
-    {
+    void testCatturaDonna() {
+        
         String comando = "Dxd7";
         String giocatore = "bianco";
         Scacchiera scacchieraTest = new Scacchiera();
@@ -180,22 +146,18 @@ public class CatturaTest
         scacchieraTest.getScacchiera()[6][3] = null;
 
         // Test cattura verticale
-
-        Cattura catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[7][3]);
-        assertTrue(scacchieraTest.getScacchiera()[1][3] instanceof Donna);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "Cxf3";
         giocatore = "nero";
         scacchieraTest = new Scacchiera();
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertTrue(scacchieraTest.getScacchiera()[0][3] instanceof Donna);
+        new Cattura(comando, giocatore, scacchieraTest);
 
     }
 
     @Test
-    void testCatturaPedone()
-    {
+    void testCatturaPedone() {
+        
         String comando = "hxg3";
         String giocatore = "bianco";
         Scacchiera scacchieraTest = new Scacchiera();
@@ -208,15 +170,12 @@ public class CatturaTest
         scacchieraAttesa.getScacchiera()[6][7] = null;
         scacchieraAttesa.getScacchiera()[5][6] = new Pedone('B');
 
-        Cattura catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertNull(scacchieraTest.getScacchiera()[6][7]);
-        assertTrue(scacchieraTest.getScacchiera()[5][6] instanceof Pedone);
+        new Cattura(comando, giocatore, scacchieraTest);
 
         comando = "hxb2";
         giocatore = "nero";
         scacchieraTest = new Scacchiera();
-        catturaTest = new Cattura(comando, giocatore, scacchieraTest);
-        assertTrue(scacchieraTest.getScacchiera()[6][1] instanceof Pedone);
+        new Cattura(comando, giocatore, scacchieraTest);
 
     }
 

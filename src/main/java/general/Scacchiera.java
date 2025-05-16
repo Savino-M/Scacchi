@@ -8,18 +8,7 @@ import java.io.PrintStream;
  * noECB
  * Crea e visualizza lo stato della scacchiera
  */
-public class Scacchiera
-{
-    private static final int MAXCOL = 7;
-    private static final int ROW = 8;
-    private static final int COLUMN = 8;
-    private static final int PRIGAB = 7;
-    private static final int COLTOR = 7;
-    private static final int COLD = 3;
-    private static final int COLRE = 4;
-    private static final int COLALF = 5;
-    private static final int COLCAV = 6;
-    private static final int RIGAPED = 6;
+public class Scacchiera {
     public static final String ANSI_WHITE_BACKGROUND = "\033[0;107m";
     /**
      * Colore bianco per il background
@@ -33,6 +22,16 @@ public class Scacchiera
      * Resetta i colori
      */
     public static final String ANSI_BLACK = "\u001B[30m";
+    private static final int MAXCOL = 7;
+    private static final int ROW = 8;
+    private static final int COLUMN = 8;
+    private static final int PRIGAB = 7;
+    private static final int COLTOR = 7;
+    private static final int COLD = 3;
+    private static final int COLRE = 4;
+    private static final int COLALF = 5;
+    private static final int COLCAV = 6;
+    private static final int RIGAPED = 6;
     /**
      * Colore nero per le pedine
      */
@@ -42,8 +41,7 @@ public class Scacchiera
     /**
      * Costruttore
      */
-    public Scacchiera()
-    {
+    public Scacchiera() {
 
         // pone i pezzi neri sulla scacchiera
         getScacchiera()[0][0] = new Torre('N');
@@ -55,8 +53,7 @@ public class Scacchiera
         getScacchiera()[0][COLCAV] = new Cavallo('N');
         getScacchiera()[0][COLTOR] = new Torre('N');
 
-        for (int i = 0; i < COLUMN; i++)
-        {
+        for (int i = 0; i < COLUMN; i++) {
             getScacchiera()[1][i] = new Pedone('N');
         }
 
@@ -70,8 +67,7 @@ public class Scacchiera
         getScacchiera()[PRIGAB][COLCAV] = new Cavallo('B');
         getScacchiera()[PRIGAB][COLTOR] = new Torre('B');
 
-        for (int i = 0; i < COLUMN; i++)
-        {
+        for (int i = 0; i < COLUMN; i++) {
             getScacchiera()[RIGAPED][i] = new Pedone('B');
         }
     }
@@ -79,55 +75,40 @@ public class Scacchiera
     /**
      * Stampa la scacchiera
      */
-    public void show()
-    {
+    public void show() {
         int i, j, z;
         boolean bianco1 = true;
         boolean bianco = true;
         System.out.println("      a    b    c    d    e    f    g    h       \n");
 
-        for (i = 0; i < ROW; i++)
-        {
+        for (i = 0; i < ROW; i++) {
 
             System.out.print("    ");
-            for (z = 0; z < COLUMN; z++)
-            {
+            for (z = 0; z < COLUMN; z++) {
 
-                if (bianco1)
-                {
-                    if (z < COLUMN)
-                    {
+                if (bianco1) {
+                    if (z < COLUMN) {
                         bianco1 = !bianco1;
                         System.out.print(ANSI_WHITE_BACKGROUND + ANSI_BLACK);
                     }
 
-                }
-                else
-                {
-                    if (z < COLUMN)
-                    {
+                } else {
+                    if (z < COLUMN) {
                         bianco1 = !bianco1;
                         System.out.print(ANSI_BLUE_BACKGROUND + ANSI_BLACK);
                     }
                 }
-                try
-                {
+                try {
                     System.setOut(new PrintStream(System.out, false, "UTF-8"));
                     System.out.print("     " + ANSI_RESET);
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
 
                 }
-                if (z == MAXCOL)
-                {
-                    if (bianco1)
-                    {
+                if (z == MAXCOL) {
+                    if (bianco1) {
                         bianco1 = !bianco1;
 
-                    }
-                    else
-                    {
+                    } else {
                         bianco1 = !bianco1;
                     }
                     System.out.print("     \n" + ANSI_RESET);
@@ -135,47 +116,34 @@ public class Scacchiera
             }
 
             System.out.print(" " + (ROW - i) + "  ");
-            for (j = 0; j < COLUMN; j++)
-            {
+            for (j = 0; j < COLUMN; j++) {
 
-                if (bianco)
-                {
-                    if (j < COLUMN)
-                    {
+                if (bianco) {
+                    if (j < COLUMN) {
                         bianco = !bianco;
                         System.out.print(ANSI_WHITE_BACKGROUND + ANSI_BLACK);
                     }
 
-                }
-                else
-                {
-                    if (j < COLUMN)
-                    {
+                } else {
+                    if (j < COLUMN) {
                         bianco = !bianco;
                         System.out.print(ANSI_BLUE_BACKGROUND + ANSI_BLACK);
 
                     }
                 }
-                try
-                {
+                try {
                     System.setOut(new PrintStream(System.out, false, "UTF-8"));
                     System.out.print("  " + getScacchiera()[i][j].getUniCode() + "  " + ANSI_RESET);
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     System.out.print("     " + ANSI_RESET);
                 }
 
-                if (j == MAXCOL)
-                {
+                if (j == MAXCOL) {
 
-                    if (bianco)
-                    {
+                    if (bianco) {
                         bianco = !bianco;
 
-                    }
-                    else
-                    {
+                    } else {
                         bianco = !bianco;
                     }
 
@@ -192,18 +160,17 @@ public class Scacchiera
      *
      * @return scacchiera matrice che rappresenta la scacchiera
      */
-    public Pezzo[][] getScacchiera()
-    {
+    public Pezzo[][] getScacchiera() {
         return scacchiera;
     }
 
     /**
      * Modifica la scacchiera
      *
-     * @param scacchieraRicevuta nuova matrice(scacchiera) da andare a sostituire a quella vecchia
+     * @param scacchieraRicevuta nuova matrice(scacchiera) da andare a sostituire a
+     *                           quella vecchia
      */
-    public void setScacchiera(final Pezzo[][] scacchieraRicevuta)
-    {
+    public void setScacchiera(final Pezzo[][] scacchieraRicevuta) {
         this.scacchiera = scacchieraRicevuta;
     }
 
